@@ -95,7 +95,7 @@ string PontFlutuante::getNum(int B)
 string PontFlutuante::getPF(int B)
 {
     return this->Arm;
-    return this->Num;
+    //return this->Num;
     //return this->exp;
     //return this->B;
     //return this->precisao;
