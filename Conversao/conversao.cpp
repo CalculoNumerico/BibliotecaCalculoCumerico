@@ -2,6 +2,8 @@
 
 Conversao::Conversao()
 {
+    this->Bin = "";
+    this->Dec = "";
 }
 
 Conversao::~Conversao()
@@ -28,15 +30,13 @@ string Conversao::DecBin(double decVal, int maxRep)
             numInt = (numInt - resto)/2;
         }
 
-        this->Bin_int = resultado.length();  //Armazendo o valor inteiro do binario.
-
         string resAnterior = resultado;
         std::ostringstream strs;
         strs << numInt;
         resultado = strs.str() + resAnterior;
-
-        if(numDec != 0)
-            resultado += ".";
+        this->Bin_int = resultado.length();  //Armazendo a parte inteira do binario.
+//        if(numDec != 0)
+//            resultado += ".";
 
 
         while(cont != maxRep && numDec != 0)
@@ -51,15 +51,16 @@ string Conversao::DecBin(double decVal, int maxRep)
             cont++;
         }
         return resultado;
+        this->Bin = resultado;
 }
 
-string Conversao::DecBin(int Dec, int I, int S)
+string Conversao::DecBin(int Dec, int Inf, int Sup)
 {
     string resultado;
     int numInt = Dec;
 
     //Condição para conversão da base
-   if(Dec <= S && Dec >= I)
+   if(Dec <= Sup&& Dec >= Inf)
    {
     while(numInt != 1)
     {
@@ -92,10 +93,10 @@ string Conversao::BinDec(string binInt, string binDec)
         indice--;
     }
 
-    //ui->numDec->setText(QString::number(Resultado));
     std::ostringstream strs;
     strs << Resultado;
 
     return strs.str();
+    this->Dec = strs.str();
 }
 

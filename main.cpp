@@ -10,9 +10,12 @@ int main()
 
     //cout << "Hello World!" << endl;
     PontFlutuante a;
+    Conversao b;
 
-    a.setPF(3.123,4,5,-5);
+    a.setArm(-7,5,5,-5);
+    b.DecBin(2,-5,5);
 
+    a.print();
     return 0;
 }
 

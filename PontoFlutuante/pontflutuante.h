@@ -21,17 +21,13 @@ public:
     PontFlutuante();
     ~PontFlutuante();
 
-    void setPF(double Dec, int t, int I, int S);
+    void setArm(double Dec, int t, int I, int S);
+    void setNum(double Dec, int t, int I, int S);
 
     void print();
 
-    string getPF();
     string getNum();
     string getArm();
-
-    string getPF(int B);
-    string getNum(int B);
-    string getArm(int B);
 
     double Valor_Dec;
 };

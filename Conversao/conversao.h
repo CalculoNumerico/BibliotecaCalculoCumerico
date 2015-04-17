@@ -8,6 +8,7 @@
 using namespace std;
 class Conversao
 {
+    string Bin, Dec;
 
 
 public:
@@ -15,11 +16,14 @@ public:
     ~Conversao();
 
     string DecBin(double Dec, int MaxCasas);
-    string DecBin(int Dec, int I, int S);
+    string DecBin(int Dec, int Inf, int Sup);
 
     string BinDec(string binInt, string binDec);
 
-    int Bin_int;
+    string getBin();
+    string getDec();
+
+   int Bin_int;
 
 };
 
