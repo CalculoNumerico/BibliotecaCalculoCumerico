@@ -9,7 +9,6 @@ PontFlutuante::PontFlutuante()
     this->precisao = 0;
     this->Arm = "";
     this->Num = "";
-    this->exp = "";
 }
 
 PontFlutuante::~PontFlutuante()
@@ -29,33 +28,27 @@ void PontFlutuante::setArm(double Dec, int t, int I, int S)
     int Valor_Exp = X.Bin_int;
     ExpBin = setExp(Valor_Exp,I, S);
 //Adcionando o sinal da mantissa.
-    string AUX;
     if(Dec < 0){
-        AUX = "1";
-        result = AUX + result;
+        result = "1" + result;
         }
     else if (Dec >= 0){
-        AUX = "0";
-        result = AUX + result;
+        result = "0" + result;
         }
 //Adcionando a mantissa.
     while(result.length() < t + 1)
     {
         result +="0";
     }
-
 //Adcionando o Exponencial.
-//    if(Dec>1 || (Dec*(-1)) > 1){
-//        result +="0";
-//        result +=ExpBin;
-//    }
-//    else{
-//        result +="1";
-//        result +=ExpBin;
-//    }
-
+    if(Dec>1 || (Dec*(-1)) > 1){
+        result +="0";
+        result +=ExpBin;
+    }
+    else{
+        result +="1";
+        result +=ExpBin;
+    }
      this->Arm = result;
-
 }
 
 void PontFlutuante::setNum(double Dec, int t, int I, int S)
@@ -66,7 +59,8 @@ void PontFlutuante::setNum(double Dec, int t, int I, int S)
 string PontFlutuante::setExp(int Exp, int I, int S)
 {
     Conversao X;
-    this->exp = X.DecBin(Exp, I, S);
+    //cout<<Exp<<"\n";
+    string exp = X.DecBin(Exp, I, S);
     return exp;
 }
 //#################################//
@@ -82,6 +76,6 @@ string PontFlutuante::getNum()
 
 void PontFlutuante::print()
 {
-    cout<<this->Arm<<"\n";
+    cout<<this->Arm<<"\n\n";
 }
 

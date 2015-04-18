@@ -8,7 +8,7 @@
 using namespace std;
 class Conversao
 {
-    string Bin, Dec;
+    string Valor;
 
 
 public:
@@ -23,7 +23,9 @@ public:
     string getBin();
     string getDec();
 
-   int Bin_int;
+    void print();
+
+    int Bin_int;
 
 };
 

@@ -13,7 +13,7 @@ class PontFlutuante
 
     float precisao; //Precisao do ponto flutuante
 
-    string Arm, Num,  exp; //Representacao numerica e de armazenamento, e o exp.
+    string Arm, Num; //Representacao numerica e de armazenamento, e o exp.
 
      string setExp(int Exp, int I, int S);
 
