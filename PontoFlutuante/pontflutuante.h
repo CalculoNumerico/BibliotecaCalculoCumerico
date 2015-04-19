@@ -30,6 +30,7 @@ public:
     string getArm();
 
     double Valor_Dec;
+    int Valor_Exp;
 };
 
 #endif // PONTFLUTUANTE_H

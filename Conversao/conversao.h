@@ -4,28 +4,24 @@
 #include <math.h>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include "PontoFlutuante/pontflutuante.h"
 
 using namespace std;
+
+namespace Conv {
+    string DecBin(double decVal, int maxRep);
+    string DecBin(int Dec, int Inf, int Sup);
+
+    string BinDec(string binInt, string binDec);
+}
+
 class Conversao
 {
-    string Valor;
-
 
 public:
     Conversao();
     ~Conversao();
-
-    string DecBin(double Dec, int MaxCasas);
-    string DecBin(int Dec, int Inf, int Sup);
-
-    string BinDec(string binInt, string binDec);
-
-    string getBin();
-    string getDec();
-
-    void print();
-
-    int Bin_int;
 
 };
 

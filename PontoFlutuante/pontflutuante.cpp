@@ -18,15 +18,15 @@ PontFlutuante::~PontFlutuante()
 
 void PontFlutuante::setArm(double Dec, int t, int I, int S)
 {
-    Conversao X;
+//    Conversao X;
     string result;
     string ExpBin;
 //Converte o valor Decimal.
     this->Valor_Dec = Dec;
-    result = X.DecBin(Dec, t);
+    result = Conv::DecBin(Dec, t);
 //Converte o Exponencial.
-    int Valor_Exp = X.Bin_int;
-    ExpBin = setExp(Valor_Exp,I, S);
+    int Exp = this->Valor_Exp;
+    ExpBin = setExp(Exp,I, S);
 //Adcionando o sinal da mantissa.
     if(Dec < 0){
         result = "1" + result;
@@ -58,9 +58,7 @@ void PontFlutuante::setNum(double Dec, int t, int I, int S)
 
 string PontFlutuante::setExp(int Exp, int I, int S)
 {
-    Conversao X;
-    //cout<<Exp<<"\n";
-    string exp = X.DecBin(Exp, I, S);
+    string exp = Conv::DecBin(Exp, I, S);
     return exp;
 }
 //#################################//

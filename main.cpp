@@ -11,7 +11,7 @@ int main()
     PontFlutuante a;
     Conversao b;
 
-    a.setArm(12,10,-5,5);
+    a.setArm(7,10,-5,5);
     //b.DecBin(2,-5,5);
 
     a.print();

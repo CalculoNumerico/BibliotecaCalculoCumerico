@@ -1,22 +1,16 @@
 #include "conversao.h"
 
-Conversao::Conversao()
+namespace Conv
 {
-    this->Valor = "";
-}
-
-Conversao::~Conversao()
-{
-}
 //Função de conversão decimal binario.
-string Conversao::DecBin(double decVal, int maxRep)
+string DecBin(double decVal, int maxRep)
 {
     string resultadoInt;
     string resultadoFrac;
-
     string result;
 
-        //cout<<resultado<<endl;
+    PontFlutuante exp;
+
         int numInt = (int)decVal;
         double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
         int cont = 0;                       //Contador para a parte fracionada
@@ -50,75 +44,77 @@ string Conversao::DecBin(double decVal, int maxRep)
         }
         //----------------------------------------------------------------//
         //Armazenando o exp//
-        if(numInt > 0)// se o valor for maior que 1.
-            this->Bin_int = resultadoInt.length();
+        if(numInt > 0)// se o valor for maior que 0.
+          exp.Valor_Exp  = resultadoInt.length();
 
-        else if(numInt <=0)// se o valor for menor que 1.
-            this->Bin_int = resultadoFrac.length();
+        else if(numInt ==0)// se o valor for igual a 0.
+          exp.Valor_Exp = resultadoFrac.length();
         //----------------------------------------------------------------//
         result = resultadoInt + resultadoFrac;
-        this->Valor = result;
-        return Valor;
+        return result;
 
 
-}
-//Converçao do exp
-string Conversao::DecBin(int Dec, int Inf, int Sup)
-{
-    string resultado;
-    int numInt = Dec;
-   // cout<<Dec<<"\n";
-
-    //Condição para conversão da base
-   if(Dec <= Sup && Dec >= Inf)
-   {
-    while(numInt != 1)
-    {
-        int resto = numInt%2;
-        string resAnterior = resultado;
-        std::ostringstream strs;
-        strs << resto;
-        resultado = strs.str() + resAnterior;
-        numInt = (numInt - resto)/2;
-    }    
-    string resAnterior = resultado;
-    std::ostringstream strs;
-    strs << numInt;
-    resultado = strs.str() + resAnterior;
-   }
-   else
-       cout<<"Valor do expoente é maior ou menor que os limites inferior ou superior";
-
-   return resultado;
-}
-//Conver;áo de binario para decimal
-string Conversao::BinDec(string binInt, string binDec)
-{
-    int indice = 0;
-    double Resultado = 0;
-    //Convercáo da parte inteira
-    for(int i = binInt.length()-1; i >= 0; i--)
-    {
-        Resultado += double(binInt.at(i)-48)*pow(2,indice);
-        indice++;
     }
-    //----------------------------------------------------------------//
-    //Convercáo da parte fracionaria
-    indice = -1;
-    for(int i = 0; i <= binDec.length()-1; i++)
+    //Converçao do exp
+    string DecBin(int Dec, int Inf, int Sup)
     {
-        Resultado += double(binDec.at(i)-48)*pow(2,indice);
-        indice--;
-    }
-    //----------------------------------------------------------------//
-    std::ostringstream strs;
-    strs << Resultado;
+        string resultado;
+        int numInt = Dec;
 
-    return strs.str();
-    this->Valor = strs.str();
+            //Condição para conversão da base
+           if(Dec <= Sup && Dec >= Inf)
+           {
+            while(numInt != 1)
+            {
+                int resto = numInt%2;
+                string resAnterior = resultado;
+                std::ostringstream strs;
+                strs << resto;
+                resultado = strs.str() + resAnterior;
+                numInt = (numInt - resto)/2;
+            }
+            string resAnterior = resultado;
+            std::ostringstream strs;
+            strs << numInt;
+            resultado = strs.str() + resAnterior;
+           }
+           else if(Dec > Sup && Dec < Inf)
+               cout<<"Valor do expoente é maior ou menor que os limites inferior ou superior";
+
+           return resultado;
+    }
+    //Conver;áo de binario para decimal
+    string BinDec(string binInt, string binDec)
+    {
+        int indice = 0;
+        double Resultado = 0;
+            //Convercáo da parte inteira
+            for(int i = binInt.length()-1; i >= 0; i--)
+            {
+                Resultado += double(binInt.at(i)-48)*pow(2,indice);
+                indice++;
+            }
+            //----------------------------------------------------------------//
+            //Convercáo da parte fracionaria
+            indice = -1;
+            for(int i = 0; i <= binDec.length()-1; i++)
+            {
+                Resultado += double(binDec.at(i)-48)*pow(2,indice);
+                indice--;
+            }
+            //----------------------------------------------------------------//
+            std::ostringstream strs;
+            strs << Resultado;
+
+            return strs.str();
+    }
 }
-// funçao que escreve na tela
-void Conversao::print()
+
+Conversao::Conversao()
 {
-    cout<<Valor<<"\n";
 }
+
+Conversao::~Conversao()
+{
+}
+
