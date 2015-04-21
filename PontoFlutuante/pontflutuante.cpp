@@ -2,10 +2,6 @@
 
 PontFlutuante::PontFlutuante()
 {
-    this->B = 0;
-    this->I = 0;
-    this->S = 0;
-    this->t = 0;
     this->precisao = 0;
     this->Arm = "";
     this->Num = "";
@@ -13,33 +9,30 @@ PontFlutuante::PontFlutuante()
 
 PontFlutuante::~PontFlutuante()
 {
-
 }
 
-void PontFlutuante::setArm(double Dec, int t, int I, int S)
+void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
 {
-//    Conversao X;
     string result;
     string ExpBin;
-//Converte o valor Decimal.
+    //Converte o valor Decimal.
     this->Valor_Dec = Dec;
-    result = Conv::DecBin(Dec, t);
-//Converte o Exponencial.
+    result = Conv::DecBin(Dec, Mant);
+    //Converte o Exponencial.
     int Exp = this->Valor_Exp;
-    ExpBin = setExp(Exp,I, S);
-//Adcionando o sinal da mantissa.
-    if(Dec < 0){
-        result = "1" + result;
-        }
-    else if (Dec >= 0){
-        result = "0" + result;
-        }
-//Adcionando a mantissa.
-    while(result.length() < t + 1)
-    {
+    ExpBin = setExp(Exp,Inf, Sup);
+    //Adcionando a mantissa.
+    while(result.length() <= Mant + 1)
         result +="0";
-    }
-//Adcionando o Exponencial.
+
+    //Adcionando o sinal da mantissa.
+    if(Dec < 0)
+        result = "1" + result;
+
+    else if (Dec >= 0)
+        result = "0" + result;
+
+    //Adcionando o Exponencial.
     if(Dec>1 || (Dec*(-1)) > 1){
         result +="0";
         result +=ExpBin;
@@ -51,17 +44,45 @@ void PontFlutuante::setArm(double Dec, int t, int I, int S)
      this->Arm = result;
 }
 
-void PontFlutuante::setNum(double Dec, int t, int I, int S)
+void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
 {
+    string result;
+    string ExpBin;
+    //Converte o valor Decimal.
+    this->Valor_Dec = Dec;
+    result = Conv::DecBin(Dec,Mant);
+    //Converte o Exponencial.
+    ExpBin = setExp(this->Valor_Exp,Inf,Sup);
 
+    //Adcionando a mantissa.
+    while(result.length() <= Mant + 1)
+        result +="0";
+
+    //Adcionando o sinal da mantissa.
+    if(Dec < 0)
+        result = "- 0," + result;
+
+    else if(Dec >= 0)
+        result = "0," + result;
+
+    //Adcionando o Exponencial.
+    if(Dec>1 || (Dec*(-1)) > 1){
+        result +="x2^";
+        result +=ExpBin;
+    }
+    else{
+        result +="x2^ -";
+        result +=ExpBin;
+    }
+     this->Num = result;
 }
 
-string PontFlutuante::setExp(int Exp, int I, int S)
+string PontFlutuante::setExp(int Exp, int Inf, int Sup)
 {
-    string exp = Conv::DecBin(Exp, I, S);
+    string exp = Conv::DecBin(Exp, Inf, Sup);
     return exp;
 }
-//#################################//
+
 string PontFlutuante::getArm()
 {
     return Arm;

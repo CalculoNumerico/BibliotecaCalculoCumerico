@@ -9,7 +9,9 @@
 
 using namespace std;
 
-namespace Conv {
+namespace Conv
+{
+
     string DecBin(double decVal, int maxRep);
     string DecBin(int Dec, int Inf, int Sup);
 

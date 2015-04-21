@@ -9,20 +9,18 @@ using namespace std;
 
 class PontFlutuante
 {
-    int B, t, I, S; //Variaveis iniciais.
-
     float precisao; //Precisao do ponto flutuante
 
     string Arm, Num; //Representacao numerica e de armazenamento, e o exp.
 
-     string setExp(int Exp, int I, int S);
+    string setExp(int Exp, int Inf, int Sup);
 
 public:
     PontFlutuante();
     ~PontFlutuante();
 
-    void setArm(double Dec, int t, int I, int S);
-    void setNum(double Dec, int t, int I, int S);
+    void setArm(double Dec, int Mant, int Inf, int Sup);
+    void setNum(double Dec, int Mant, int Inf, int Sup);
 
     void print();
 
