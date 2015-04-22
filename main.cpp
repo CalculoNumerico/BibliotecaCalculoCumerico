@@ -9,13 +9,14 @@ int main()
 {
     //cout << "Hello World!" << endl;
     PontFlutuante a;
-    Conversao b;
 
-    a.setArm(7,10,-5,5);
-    //b.DecBin(2,-5,5);
+//    a.setArm(7,10,-5,5);
+//    a.printArm();
+//    a.printNum();
 
-    a.print();
-    //b.print();
+//    string A;
+//   A    =  Conv::DecBin(3, 5);
+//   cout<<A<<"\n";
     return 0;
 }
 

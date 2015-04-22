@@ -3,3 +3,6 @@
 Escalonamento::Escalonamento()
 {
 }
+Escalonamento::~Escalonamento()
+{
+}

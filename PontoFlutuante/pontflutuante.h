@@ -22,7 +22,8 @@ public:
     void setArm(double Dec, int Mant, int Inf, int Sup);
     void setNum(double Dec, int Mant, int Inf, int Sup);
 
-    void print();
+    void printArm();
+    void printNum();
 
     string getNum();
     string getArm();

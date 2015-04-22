@@ -53,7 +53,6 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     result = Conv::DecBin(Dec,Mant);
     //Converte o Exponencial.
     ExpBin = setExp(this->Valor_Exp,Inf,Sup);
-
     //Adcionando a mantissa.
     while(result.length() <= Mant + 1)
         result +="0";
@@ -93,8 +92,12 @@ string PontFlutuante::getNum()
     return this->Num;
 }
 
-void PontFlutuante::print()
+void PontFlutuante::printArm()
 {
     cout<<this->Arm<<"\n\n";
+}
+void PontFlutuante::printNum()
+{
+    cout<<this->Num<<"\n\n";
 }
 
