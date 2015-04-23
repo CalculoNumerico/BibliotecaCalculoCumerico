@@ -9,7 +9,7 @@ string DecBin(double decVal, int maxRep)
     string resultadoFrac;
     string result;
 
-    PontFlutuante exp;
+    PontFlutuante a;
 
         int numInt = (int)decVal;
         double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
@@ -45,10 +45,10 @@ string DecBin(double decVal, int maxRep)
         //----------------------------------------------------------------//
         //Armazenando o exp//
         if((int)decVal > 0){// se o valor for maior que 0.
-          exp.Valor_Exp  = resultadoInt.length();
+          a.Valor_Exp  = resultadoInt.length();
         }
         else if((int)decVal == 0){// se o valor for igual a 0.
-          exp.Valor_Exp = resultadoFrac.length();
+          a.Valor_Exp = resultadoFrac.length();
         }
         //----------------------------------------------------------------//
         result = resultadoInt + resultadoFrac;
@@ -89,6 +89,7 @@ string DecBin(double decVal, int maxRep)
     {
         int indice = 0;
         double Resultado = 0;
+
             //Convercáo da parte inteira
             for(int i = binInt.length()-1; i >= 0; i--)
             {
@@ -96,6 +97,7 @@ string DecBin(double decVal, int maxRep)
                 indice++;
             }
             //----------------------------------------------------------------//
+
             //Convercáo da parte fracionaria
             indice = -1;
             for(int i = 0; i <= binDec.length()-1; i++)
@@ -104,6 +106,7 @@ string DecBin(double decVal, int maxRep)
                 indice--;
             }
             //----------------------------------------------------------------//
+
             std::ostringstream strs;
             strs << Resultado;
 

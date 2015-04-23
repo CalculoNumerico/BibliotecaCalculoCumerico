@@ -13,7 +13,7 @@ class PontFlutuante
 
     string Arm, Num; //Representacao numerica e de armazenamento, e o exp.
 
-    string setExp(int Exp, int Inf, int Sup);
+
 
 public:
     PontFlutuante();
@@ -21,6 +21,8 @@ public:
 
     void setArm(double Dec, int Mant, int Inf, int Sup);
     void setNum(double Dec, int Mant, int Inf, int Sup);
+
+    string setExp(int Exp, int Inf, int Sup);
 
     void printArm();
     void printNum();
