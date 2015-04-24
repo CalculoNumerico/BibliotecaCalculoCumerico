@@ -44,12 +44,12 @@ string DecBin(double decVal, int maxRep)
         }
         //----------------------------------------------------------------//
         //Armazenando o exp//
-        if((int)decVal > 0){// se o valor for maior que 0.
+        if((int)decVal > 0)// se o valor for maior que 0.
           a.Valor_Exp  = resultadoInt.length();
-        }
-        else if((int)decVal == 0){// se o valor for igual a 0.
+
+        else if((int)decVal == 0)// se o valor for igual a 0.
           a.Valor_Exp = resultadoFrac.length();
-        }
+
         //----------------------------------------------------------------//
         result = resultadoInt + resultadoFrac;
         return result;

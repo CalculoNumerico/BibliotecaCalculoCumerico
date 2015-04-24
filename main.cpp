@@ -7,18 +7,22 @@ using namespace std;
 
 int main()
 {
-    //cout << "Hello World!" << endl;
+//Exemplo da classe ponto flutuante//
     PontFlutuante a;
-
-    a.setArm(7,10,-5,5);
-    a.setNum(7,10,-5,5);
+    a.setArm(7.5,10,-5,5);
+    a.setNum(7.5,10,-5,5);
 
     a.printArm();
     a.printNum();
+//----------------------------------------------------------------//
 
-//    string A;
-//   A    =  Conv::DecBin(3, 5);
-//   cout<<A<<"\n";
+//Exemplo da classe conversao//
+   string A;
+   A =  Conv::DecBin(7.5, 5);
+   cout<<A<<"\n\n";
+   //ou.
+   cout<<Conv::DecBin(7.5, 5)<<"\n\n";
+//------------------------------------------------//
     return 0;
 }
 

@@ -30,7 +30,6 @@ public:
     string getNum();
     string getArm();
 
-    double Valor_Dec;
     int Valor_Exp;
 };
 

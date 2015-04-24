@@ -5,8 +5,6 @@ PontFlutuante::PontFlutuante()
     this->precisao = 0;
     this->Arm = "";
     this->Num = "";
-    Valor_Exp = 0;
-    Valor_Dec = 0;
 }
 
 PontFlutuante::~PontFlutuante()
@@ -17,12 +15,13 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
+
     //Converte o valor Decimal.
-//    this->Valor_Dec = Dec;
     result = Conv::DecBin(Dec, Mant);
+
     //Converte o Exponencial.
-    int Exp = this->Valor_Exp;
-    ExpBin = setExp(Exp,Inf, Sup);
+    ExpBin = setExp(this->Valor_Exp,Inf, Sup);
+
     //Adcionando a mantissa.
     while(result.length() <= Mant + 1)
         result +="0";
@@ -35,14 +34,13 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
         result = "0" + result;
 
     //Adcionando o Exponencial.
-    if(Dec>1 || (Dec*(-1)) > 1){
-        result +="0";
-        result +=ExpBin;
-    }
-    else{
-        result +="1";
-        result +=ExpBin;
-    }
+    if(Dec>1 || (Dec*(-1)) > 1)
+        result = result + "0" + ExpBin;
+
+    else
+        result =
+                result + "1" + ExpBin;
+
      this->Arm = result;
 }
 
@@ -52,7 +50,6 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     string ExpBin;
 
     //Converte o valor Decimal.
-//    this->Valor_Dec = Dec;
     result = Conv::DecBin(Dec,Mant);
 
     //Converte o Exponencial.
