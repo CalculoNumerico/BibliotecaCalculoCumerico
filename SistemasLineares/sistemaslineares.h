@@ -7,7 +7,7 @@
 using namespace std;
 class SistemasLineares
 {
-    LinAlg::Matrix<float> AB, A, B;
+ //   LinAlg::Matrix<float> AB, A, B;
 
 //    void setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
 
