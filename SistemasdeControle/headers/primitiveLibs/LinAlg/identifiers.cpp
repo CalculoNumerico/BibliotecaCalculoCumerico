@@ -1,4 +1,4 @@
-#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/identifiers.h"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/identifiers.h"
 
 unsigned* Identifiers::operator, (from from_interval, to to_interval)
 {

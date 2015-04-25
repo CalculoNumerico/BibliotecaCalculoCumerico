@@ -1,4 +1,4 @@
-#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h"
+#include "C:/Users/hbarbosa/DocumentsqGitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h"
 
 template <class TypeOfClass>
 Polynom<TypeOfClass>::Polynom()

@@ -8,7 +8,7 @@
 #include <cfloat>
 
 namespace LinAlg {
-    //Not a linear algebra method. This is a computer method to guarantee a matrix precision.
+    //Not a linear algebra method. This is a computer to method to guarantee a matrix precision.
     template <typename  Type>
     void Balance (LinAlg::Matrix<Type>& matrix_to_balance);
 
@@ -41,7 +41,7 @@ namespace LinAlg {
     LinAlg::Matrix<Type> EigenValues(const LinAlg::Matrix<Type>& matrix_to_get_eigenvalues, unsigned iterations = 100);
 }
 
-#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp"
 
 #endif // LINALG_H
 

@@ -1,4 +1,4 @@
-#include "SistemasdeControle/headers/graphicLibs/grafics.h"
+#include "grafics.h"
 
 grafics::grafics()
 {
@@ -15,29 +15,29 @@ grafics::grafics()
 
 //}
 
-//grafics::grafics(graphicProperties prop, simFunction func)
-//{
-//    this->prop.setGridStatus          (prop.getGridStatus());
-//    this->prop.setGraphicDataSize     (prop.getGraphicDataSize());
-//    this->prop.setGraphicXposition    (prop.getGraphicXposition());
-//    this->prop.setGraphicYposition    (prop.getGraphicYposition());
-//    this->prop.setNumberOfClicks      (prop.getNumberOfClicks());
-//    this->prop.setLastMotionPosition  (prop.getLastXMotionPosition(),
-//                                       prop.getLastYMotionPosition());
-//    this->prop.setLimits              (prop.getXLimitLeft(), prop.getXLimitRight(),
-//                                       prop.getYLimitDown(), prop.getYLimitUp());
-//    this->prop.setMotionOcurrency     (prop.getMotionOcurrency());
+grafics::grafics(graphicProperties prop, simFunction func)
+{
+    this->prop.setGridStatus          (prop.getGridStatus());
+    this->prop.setGraphicDataSize     (prop.getGraphicDataSize());
+    this->prop.setGraphicXposition    (prop.getGraphicXposition());
+    this->prop.setGraphicYposition    (prop.getGraphicYposition());
+    this->prop.setNumberOfClicks      (prop.getNumberOfClicks());
+    this->prop.setLastMotionPosition  (prop.getLastXMotionPosition(),
+                                       prop.getLastYMotionPosition());
+    this->prop.setLimits              (prop.getXLimitLeft(), prop.getXLimitRight(),
+                                       prop.getYLimitDown(), prop.getYLimitUp());
+    this->prop.setMotionOcurrency     (prop.getMotionOcurrency());
 
-////    this->func.SetInputData           (func.GetInputData());
-////    this->func.SetOutputData          (func.GetOutputData());
-////    this->func.SetDataLimits          (func.GetDataMinLimit(),
-////                                       func.GetDataMaxLimit());
-////    this->func.SetDataStep            (func.GetDataStep());
+    this->func.SetInputData           (func.GetInputData());
+    this->func.SetOutputData          (func.GetOutputData());
+    this->func.SetDataLimits          (func.GetDataMinLimit(),
+                                       func.GetDataMaxLimit());
+    this->func.SetDataStep            (func.GetDataStep());
 
-////    this->func.SetFunctionCall        (func.GetFunctionCall());
+    this->func.SetFunctionCall        (func.GetFunctionCall());
 
 
-//}
+}
 
 //grafics::grafics(double (*FunctionToCall)(double), double lMin, double lMax, double step)
 //{
@@ -58,34 +58,6 @@ grafics::grafics()
 //    this->MotionOcurrency = false;
 //}
 
-void grafics::setData(LinAlg::Matrix<double> DataX, LinAlg::Matrix<double> DataY)
-{
-    this->X = DataX;
-    this->Y = DataY;
-}
-
-void grafics::setData(LinAlg::Matrix<double> DataX, LinAlg::Matrix<double> DataY, LinAlg::Matrix<double> DataZ)
-{
-    this->X = DataX;
-    this->Y = DataY;
-    this->Z = DataZ;
-}
-
-void grafics::operator +=(LinAlg::Matrix<double> &mat)
-{
-    if(mat.getNumberOfRows() == 1)
-        this->X = this->X | mat.GetRow(1);
-    else if(mat.getNumberOfRows() == 2)
-    {
-        this->X = this->X | mat.GetRow(1);
-        this->Y = this->Y | mat.GetRow(2);
-    }else if(mat.getNumberOfRows() == 3){
-        this->X = this->X | mat.GetRow(1);
-        this->Y = this->Y | mat.GetRow(2);
-        this->Y = this->Y | mat.GetRow(3);
-    }
-}
-
 void grafics::clearDraw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  //clears the colour and depth buffers
@@ -98,11 +70,7 @@ void grafics::clearDraw()
 
 void grafics::DrawTitle()
 {
-    double fontSize = glutBitmapLength(GLUT_BITMAP_HELVETICA_18,(const unsigned char*)prop.getTitle().c_str());
-    fontSize = fontSize/prop.getTitle().length();
-    double winSize = glutGet(GLUT_WINDOW_WIDTH);
-//    double var = -fontSize/2*(500/winSize);
-    glRasterPos2f(-fontSize*(650/winSize), prop.getYLimitUp()+2);
+    glRasterPos2f(prop.getXLimitRight()- 35, prop.getYLimitUp()+2);
     glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
     glutBitmapString(GLUT_BITMAP_HELVETICA_18,(const unsigned char*)prop.getTitle().c_str());
 }
@@ -123,35 +91,36 @@ void grafics::DrawAxis(double ZeroXPosition, double ZeroYPosition)
             glVertex2f(prop.getXLimitRight(), ZeroYPosition);
         glEnd();
     }
+
+
 }
 
 void grafics::DrawGraphic()
 {
-    double ZeroXFunction = 0,
-           ZeroYFunction = 0;//ZeroYFunction = ((prop.getYLimitUp() + prop.getYLimitDown()/2));
-    LinAlg::Matrix<double> NormInput = X, NormOutput = Y;
+    double ZeroXFunction = prop.getXLimitLeft(),
+           ZeroYFunction = ((prop.getYLimitUp() + prop.getYLimitDown())/2);
+    Matrix<double> NormInput, NormOutput;
+
+    NormInput  = prop.getGraphicDataSize()*func.GetInputData().normalize(prop.getXLimitRight(), prop.getXLimitLeft()) - prop.getGraphicXposition();
+    NormOutput = prop.getGraphicDataSize()*func.GetOutputData().normalize(prop.getYLimitUp(),   prop.getYLimitDown()) + prop.getGraphicYposition();
 
 
-    //NormInput  = prop.getGraphicDataSize()*func.GetInputData().normalize(prop.getXLimitRight(), prop.getXLimitLeft()) - prop.getGraphicXposition();
-    //NormOutput = prop.getGraphicDataSize()*func.GetOutputData().normalize(prop.getYLimitUp(),   prop.getYLimitDown()) + prop.getGraphicYposition();
-
-
-        for (int i = 1; i <= NormInput.getNumberOfRows(); i++)
+        for (int i = 1; i <= NormInput.getRows(); i++)
         {
             glColor3f(double(i-1),double(i-1)/4,double(i-1)/2);
             glBegin(GL_LINE_STRIP);
-            for(int j = 1; j <= NormInput.getNumberOfColumns(); j++)
+            for(int j = 1; j <= NormInput.getCols(); j++)
             {
-                if(j < NormInput.getNumberOfColumns())
+                if(j < NormInput.getCols())
                 {
-//                    if((func.GetInputData()(i,j)  > 0.0 && func.GetInputData()(i,j+1)  < 0.0) || (func.GetInputData()(i,j)  < 0.0 && func.GetInputData()(i,j+1)  > 0.0))
-//                        ZeroYFunction = (NormInput(i,j) + NormInput(i,j+1))/2;
-//                    else if(func.GetInputData()(i,j)  == 0.0)
-//                        ZeroYFunction = NormInput(i,j);
-//                    if((func.GetOutputData()(i,j)  > 0.0 && func.GetOutputData()(i,j+1)  < 0.0) || (func.GetOutputData()(i,j)  < 0.0 && func.GetOutputData()(i,j+1)  > 0.0))
-//                        ZeroXFunction = (NormOutput(i,j)+NormOutput(i,j+1))/2;
-//                    else if(func.GetOutputData()(i,j)  == 0.0)
-//                        ZeroXFunction = NormOutput(i,j);
+                    if((func.GetInputData()(i,j)  > 0.0 && func.GetInputData()(i,j+1)  < 0.0) || (func.GetInputData()(i,j)  < 0.0 && func.GetInputData()(i,j+1)  > 0.0))
+                        ZeroYFunction = (NormInput(i,j) + NormInput(i,j+1))/2;
+                    else if(func.GetInputData()(i,j)  == 0.0)
+                        ZeroYFunction = NormInput(i,j);
+                    if((func.GetOutputData()(i,j)  > 0.0 && func.GetOutputData()(i,j+1)  < 0.0) || (func.GetOutputData()(i,j)  < 0.0 && func.GetOutputData()(i,j+1)  > 0.0))
+                        ZeroXFunction = (NormOutput(i,j)+NormOutput(i,j+1))/2;
+                    else if(func.GetOutputData()(i,j)  == 0.0)
+                        ZeroXFunction = NormOutput(i,j);
                 }
 
                 if(prop.isInGraphicRegion(NormInput(i,j), NormOutput(i,j)))
@@ -166,63 +135,9 @@ void grafics::DrawGraphic()
 
 void grafics::DrawFunction()
 {
-//    if(func.GetFunctionCall() != NULL)
-//        func.GenerateDataFunction();
+    if(func.GetFunctionCall() != NULL)
+        func.GenerateDataFunction();
     DrawGraphic();
-}
-
-void grafics::DrawStepMark()
-{
-    double MarkXDistance = 5, MarkYDistance = 6;
-    double winXSize = glutGet(GLUT_WINDOW_WIDTH), winYSize = glutGet(GLUT_WINDOW_HEIGHT);
-    double MarkYSize = 700/winXSize, MarkXSize = 500/winYSize;
-
-    for (double i = MarkXDistance; i <= prop.getXLimitRight(); i += MarkXDistance)
-    {
-        DrawLineMarks(i, MarkXSize, true);
-        for(double j = i/5; j <= prop.getXLimitRight(); j += i/5)
-            DrawLineMarks(j, MarkXSize/2, true);
-    }
-
-    for (double i = -MarkYDistance; i >= prop.getYLimitDown(); i -= MarkYDistance)
-    {
-        DrawLineMarks(-i, MarkYSize, false);
-        for(double j = (i/5); j >= prop.getYLimitDown(); j += i/5)
-            DrawLineMarks(j, MarkYSize/2, false);
-    }
-}
-
-void grafics::DrawLineMarks(double Position, double MarkSize, bool isX)
-{
-    if(isX){
-        //Marks the positive side for X Axis
-        glBegin(GL_LINE_STRIP);
-            glVertex2f(Position, -MarkSize);
-            glVertex2f(Position, MarkSize);
-        glEnd();
-
-        //Marks the negative side for X Axis
-        glBegin(GL_LINE_STRIP);
-            glVertex2f(-Position, -MarkSize);
-            glVertex2f(-Position, MarkSize);
-        glEnd();
-    }
-    else
-    {
-        if(-Position < prop.getYLimitUp())
-        {
-            //Marks the positive side for Y Axis
-            glBegin(GL_LINE_STRIP);
-                glVertex2f(-MarkSize, -Position);
-                glVertex2f(MarkSize, -Position);
-            glEnd();
-        }
-            //Marks the negative side for Y Axis
-            glBegin(GL_LINE_STRIP);
-                glVertex2f(-MarkSize, Position);
-                glVertex2f(MarkSize, Position);
-            glEnd();
-    }
 }
 
 void grafics::DrawGrid()
@@ -239,35 +154,11 @@ void grafics::DrawGrid()
     glPointSize(3.0);
 }
 
-void grafics::DrawXLabel()
-{
-    double fontSize = glutBitmapLength(GLUT_BITMAP_HELVETICA_12,(const unsigned char*)prop.getXLabel().c_str());
-    fontSize = fontSize/prop.getXLabel().length();
-    double winSize = glutGet(GLUT_WINDOW_WIDTH);
-
-    glRasterPos2f(fontSize, -40);
-    glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-    glutBitmapString(GLUT_BITMAP_HELVETICA_12,(const unsigned char*)prop.getXLabel().c_str());
-}
-
-void grafics::DrawYLabel()
-{
-    double fontSize = glutBitmapLength(GLUT_BITMAP_HELVETICA_12,(const unsigned char*)prop.getYLabel().c_str());
-    fontSize = fontSize/prop.getYLabel().length();
-    double winSize = glutGet(GLUT_WINDOW_HEIGHT);
-
-    glRasterPos2f(fontSize, -40);
-    glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-    glutBitmapString(GLUT_BITMAP_HELVETICA_12,(const unsigned char*)prop.getYLabel().c_str());
-}
-
 void grafics::display()
 {
     this->clearDraw();
     this->DrawTitle();
     this->DrawFunction();
-    this->DrawStepMark();
-    this->DrawXLabel();
     if(prop.getGridStatus() == true)
         this->DrawGrid();
 

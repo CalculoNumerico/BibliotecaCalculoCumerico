@@ -17,7 +17,7 @@ public:
     static void MotionFuncWrapper(int x, int y);
     static void PassiveMotionFuncWrapper(int x, int y);
 
-    void startFramework(int argv, char **argc);
+    void startFramework(int argv, char *argc[]);
 
     virtual void display()=0;
     virtual void MouseClickProcess(int button, int state, int x, int y)=0;

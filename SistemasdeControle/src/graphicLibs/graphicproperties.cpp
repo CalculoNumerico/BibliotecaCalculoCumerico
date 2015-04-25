@@ -1,20 +1,18 @@
-#include "SistemasdeControle/headers/graphicLibs/graphicproperties.h"
+#include "graphicproperties.h"
 
 graphicProperties::graphicProperties()
 {
     this->title = "Titulo do Grafico";
-    this->xLabel = "Tempo";
-    this->yLabel = "Y";
     this->GraphicDataSize = 1;
     this->GraphicXposition = 0;
     this->GraphicYposition = 0;
     this->NumberOfClicks = 0;
     this->LastMotionXPosition = 0;
     this->LastMotionYPosition = 0;
-    this->GraphicXLimit_Left = -40;
+    this->GraphicXLimit_Left = 0;
     this->GraphicXLimit_Right = 40;
-    this->GraphicYLimit_Down = -37;
-    this->GraphicYLimit_Up = 35;
+    this->GraphicYLimit_Down = 0;
+    this->GraphicYLimit_Up = 40;
     this->MotionOcurrency = false;
 }
 
@@ -103,12 +101,12 @@ void graphicProperties::setLimits(double GraphicXLimit_Left,
 
 void graphicProperties::setXClicks(int i, int j, double number)
 {
-    this->XClicks(i,j) = number;
+    this->XClicks(i,j,number);
 }
 
 void graphicProperties::setYClicks(int i, int j, double number)
 {
-    this->YClicks(i,j) = number;
+    this->YClicks(i,j,number);
 }
 
 void graphicProperties::setGraphicDataSize(double GraphicDataSize)
@@ -181,12 +179,12 @@ double graphicProperties::getYLimitUp()
     return this->GraphicYLimit_Up;
 }
 
-LinAlg::Matrix<double> graphicProperties::getXClicks()
+Matrix<double> graphicProperties::getXClicks()
 {
     return this->XClicks;
 }
 
-LinAlg::Matrix<double> graphicProperties::getYClicks()
+Matrix<double> graphicProperties::getYClicks()
 {
     return this->YClicks;
 }

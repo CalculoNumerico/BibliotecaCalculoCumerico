@@ -1,6 +1,6 @@
 #ifndef GRAPHICPROPERTIES_H
 #define GRAPHICPROPERTIES_H
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
+#include <src/primitiveLibs/matrix.h>
 
 class graphicProperties
 {
@@ -12,7 +12,7 @@ private:
                    GraphicYposition,   LastMotionXPosition,
                    LastMotionYPosition;
     bool           GridStatus, HoldStatus, MotionOcurrency;
-    LinAlg::Matrix<double> XClicks, YClicks;
+    Matrix<double> XClicks, YClicks;
     std::string    xLabel, yLabel, title;
 
 public:
@@ -57,8 +57,8 @@ public:
     std::string    getXLabel();
     std::string    getYLabel();
     std::string    getTitle ();
-    LinAlg::Matrix<double> getXClicks();
-    LinAlg::Matrix<double> getYClicks();
+    Matrix<double> getXClicks();
+    Matrix<double> getYClicks();
 };
 
 #endif // GRAPHICPROPERTIES_H

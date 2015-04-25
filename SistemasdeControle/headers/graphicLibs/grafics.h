@@ -1,19 +1,16 @@
 #ifndef GRAFICS_H
 #define GRAFICS_H
-#include "SistemasdeControle/headers/graphicLibs/glview.h"
+#include <src/graphicLibs/glview.h>
 #include <math.h>
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
-#include "SistemasdeControle/headers/graphicLibs/graphicproperties.h"
-#include "SistemasdeControle/headers/modelLibs/simfunction.h"
+#include <src/primitiveLibs/matrix.h>
+#include <src/graphicLibs/graphicproperties.h>
+#include <src/simulationLibs/simfunction.h>
 
 class grafics : public GlView
 {
 private:
-//    template <class Type>
-    LinAlg::Matrix<double> X,Y,Z;
-
     graphicProperties prop;
-    //simFunction func;
+    simFunction func;
     void clearDraw();
     void DrawTitle();
     void DrawXLabel();
@@ -23,24 +20,15 @@ private:
     void DrawGrid();
     void DrawData();
     void DrawGraphic();
-    void DrawStepMark();
-    void DrawLineMarks(double Position, double MarkSize, bool isX);
 //    void ZoomIn();
 //    void ZoomOut();
     void DrawFunction();
 
 public:
     grafics();
-//    grafics(simFunction func);
+    grafics(simFunction func);
     grafics(graphicProperties prop);
-//    grafics(graphicProperties prop, simFunction func);
-
-    //template<typename Type>
-    void setData(LinAlg::Matrix<double> DataX, LinAlg::Matrix<double> DataY);
-    //template<typename Type>
-    void setData(LinAlg::Matrix<double> DataX, LinAlg::Matrix<double> DataY, LinAlg::Matrix<double> DataZ);
-    LinAlg::Matrix<double> getData();
-    void operator += (LinAlg::Matrix<double> &mat);
+    grafics(graphicProperties prop, simFunction func);
 
     void display();
     void MouseClickProcess(int button, int state, int x, int y);

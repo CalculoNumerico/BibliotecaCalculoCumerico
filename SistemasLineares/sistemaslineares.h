@@ -7,26 +7,27 @@
 using namespace std;
 class SistemasLineares
 {
- //   LinAlg::Matrix<float> AB, A, B;
+//    LinAlg::Matrix<float> AB;
 
 //    void setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
 
-    void PivotParcial(LinAlg::Matrix<float> MatrizUni);
+    void PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols);
 
     void PivotCompleto(LinAlg::Matrix<float> MAtrizUni);
+
+    void abs(float Valor);
 
 public:
     SistemasLineares();
     ~SistemasLineares();
 
-//       LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
+    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
+    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
+    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
 
-//        LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni);
-
-//        LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni);
+//    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
+//    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni);
+//    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni);
 
 };
 #endif // SISTEMASLINEARES_H

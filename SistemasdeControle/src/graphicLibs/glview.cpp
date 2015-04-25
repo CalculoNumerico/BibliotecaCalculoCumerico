@@ -1,4 +1,4 @@
-#include "SistemasdeControle/headers/graphicLibs/glview.h"
+#include "glview.h"
 
 GlView *GlView::instance = 0;
 void GlView::setInstance(GlView *Img)
@@ -14,13 +14,13 @@ void GlView::setInstance(GlView *Img)
 //    glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 //}
 
-void GlView::startFramework(int argc, char** argv)
+void GlView::startFramework(int argv, char *argc[])
 {
     // Initialize GLUT
-    glutInit(&argc, argv);                                   	//initializes the GLUT framework
+    glutInit(&argv, argc);                                   	//initializes the GLUT framework
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);   //sets up the display mode
-    glutInitWindowSize (500, 500);
-    glutCreateWindow("T");
+    glutCreateWindow("Tituto do grafico");
+
     glutDisplayFunc(displayWrapper);
     glutMouseFunc(MouseFuncWrapper);
     glutMotionFunc(MotionFuncWrapper);
