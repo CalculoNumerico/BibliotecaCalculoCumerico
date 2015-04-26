@@ -23,7 +23,7 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
     ExpBin = setExp(this->Valor_Exp,Inf, Sup);
 
     //Adcionando a mantissa.
-    while(result.length() <= Mant + 1)
+    while(result.length() <= Mant)
         result +="0";
 
     //Adcionando o sinal da mantissa.
@@ -33,13 +33,13 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
     else if (Dec >= 0)
         result = "0" + result;
 
-    //Adcionando o Exponencial.
-    if(Dec>1 || (Dec*(-1)) > 1)
-        result = result + "0" + ExpBin;
+//    //Adcionando o Exponencial.
+//    if(Dec>1 || (Dec*(-1)) > 1)
+//        result = result + "0" + ExpBin;
 
-    else
-        result =
-                result + "1" + ExpBin;
+//    else
+//        result =
+//                result + "1" + ExpBin;
 
      this->Arm = result;
 }
@@ -56,7 +56,7 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     ExpBin = setExp(Valor_Exp,Inf,Sup);
 
     //Adcionando a mantissa.
-    while(result.length() <= Mant + 1)
+    while(result.length() <= Mant)
         result +="0";
 
     //Adcionando o sinal da mantissa.
@@ -66,12 +66,12 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     else if(Dec >= 0)
         result = "0," + result;
 
-    //Adcionando o Exponencial.
-    if(Dec>1 || (Dec*(-1)) > 1)
-        result = result + "x2^" + ExpBin;
+//    //Adcionando o Exponencial.
+//    if(Dec>1 || (Dec*(-1)) > 1)
+//        result = result + "x2^" + ExpBin;
 
-    else
-        result = result + "x2^-" + ExpBin;
+//    else
+//        result = result + "x2^-" + ExpBin;
 
      this->Num = result;
 }
@@ -80,24 +80,5 @@ string PontFlutuante::setExp(int Exp, int Inf, int Sup)
 {
     string exp = Conv::DecBin(Exp, Inf, Sup);
     return exp;
-}
-
-string PontFlutuante::getArm()
-{
-    return Arm;
-}
-
-string PontFlutuante::getNum()
-{
-    return this->Num;
-}
-
-void PontFlutuante::printArm()
-{
-    cout<<this->Arm<<"\n\n";
-}
-void PontFlutuante::printNum()
-{
-    cout<<this->Num<<"\n\n";
 }
 

@@ -13,8 +13,6 @@ class PontFlutuante
 
     string Arm, Num; //Representacao numerica e de armazenamento, e o exp.
 
-
-
 public:
     PontFlutuante();
     ~PontFlutuante();
@@ -24,11 +22,11 @@ public:
 
     string setExp(int Exp, int Inf, int Sup);
 
-    void printArm();
-    void printNum();
+    void printArm(){cout<<Arm<<"\n\n";}//Imprime da forma de armazenamento.
+    void printNum(){cout<<Num<<"\n\n";}//Imprime da forma numerica.
 
-    string getNum();
-    string getArm();
+    string getNum(){return this->Num;}//Retorna a forma numerica.
+    string getArm(){return  this->Arm;}//Retorna a forma armazenamento.
 
     int Valor_Exp;
 };

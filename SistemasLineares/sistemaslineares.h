@@ -5,29 +5,29 @@
 #include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
 
 using namespace std;
+
 class SistemasLineares
 {
-//    LinAlg::Matrix<float> AB;
+    //Cria a matriz equivalente composta de A e B.
+    //LinAlg::Matrix<float> setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B) {return A|B;}
 
-//    void setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
+    LinAlg::Matrix<float> X0;
 
     void PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols);
-
     void PivotCompleto(LinAlg::Matrix<float> MAtrizUni);
 
-    void abs(float Valor);
+    void setX0(LinAlg::Matrix<float> InicialStep){this->X0 = InicialStep;}
+
+    float abs(float Valor);//Modulo do Valor.
 
 public:
     SistemasLineares();
     ~SistemasLineares();
 
-    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
+    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
+    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps);
+    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps);
 
-//    LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
-//    LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni);
-//    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni);
 
 };
 #endif // SISTEMASLINEARES_H
