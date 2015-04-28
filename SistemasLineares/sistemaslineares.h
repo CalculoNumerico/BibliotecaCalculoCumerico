@@ -11,14 +11,15 @@ class SistemasLineares
     //Cria a matriz equivalente composta de A e B.
     //LinAlg::Matrix<float> setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B) {return A|B;}
 
-    LinAlg::Matrix<float> X0;
+    LinAlg::Matrix<float> X0;//Matriz do estado inicial do sistema
+    LinAlg::Matrix<float> MatrizErro;//Matriz com os erros do sistema.
 
     void PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols);
-    void PivotCompleto(LinAlg::Matrix<float> MAtrizUni);
+    void PivotCompleto(LinAlg::Matrix<float> &MAtrizUni, int cols);
 
-    void setX0(LinAlg::Matrix<float> InicialStep){this->X0 = InicialStep;}
 
-    float abs(float Valor);//Modulo do Valor.
+
+    float abs(float Valor);//Valor em MODULO.
 
 public:
     SistemasLineares();
@@ -28,6 +29,8 @@ public:
     LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps);
     LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps);
 
+    void setX0(LinAlg::Matrix<float> InicialStep){this->X0 = InicialStep;}//Função para set dos Valores iniciais das sistema.
+    void ConvDiv(LinAlg::Matrix<float> MatrizUni);
 
 };
 #endif // SISTEMASLINEARES_H

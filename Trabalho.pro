@@ -20,7 +20,7 @@ HEADERS += \
     Conversao/conversao.h \
     PontoFlutuante/pontflutuante.h \
     SistemasLineares/sistemaslineares.h \
-#    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/glview.h \
+    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/glview.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/grafics.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/graphicproperties.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/identifiers.h \

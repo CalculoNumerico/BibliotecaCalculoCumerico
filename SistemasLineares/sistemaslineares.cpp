@@ -3,6 +3,7 @@
 SistemasLineares::SistemasLineares()
 {
     this->X0 = 0;
+    this->MatrizErro = 0;
 }
 SistemasLineares::~SistemasLineares()
 {
@@ -15,13 +16,14 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
         for(int i = cols + 1; i <= MatrizUni.getNumberOfRows(); i++){
             if(abs(MatrizUni(cols,cols)) < abs(MatrizUni(i,cols)))
             {
-
-
+//                AUX = LinAlg::Matrix<float>::GetRow(cols);
+//                LinAlg::Matrix<float>::SwapRows(cols,i);
+//                LinAlg::Matrix<float>::SwapRows(i,AUX);
             }
       }
 }
 
-void SistemasLineares::PivotCompleto(LinAlg::Matrix<float> MAtrizUni)
+void SistemasLineares::PivotCompleto(LinAlg::Matrix<float> &MAtrizUni, int cols)
 {
 }
 
@@ -34,16 +36,21 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 {
     LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
 
-        for(int k = 2; k < MaxIterations+1; k++)
+    //fazer a com que MatrizRes possua os valores de MatrizX0.
+
+    this->MatrizErro (MaxIterations, MatrizUni.getNumberOfColumns());
+        for(int k = 2; k < MaxIterations+1; k++)//Laço para conta as linhas da MatrizRes e MatrizErro
         {
-            for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)
+            for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)//Laço para conta as colunas da MatrizRes, MatrizErro e linhas da MatrizUni.
             {
-                MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
-                for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)
+                MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);//Divisão dos termos independentes das funções
+                for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)//Laço para conta as colunas da MatrizUni
                 {
-//                    if(i != j){
-//                        MatrizRes(k,i) += ((MatrizUni(i,j)*MatrizRes(k-1,i))*-1)/MatrizUni(i,i);
-//                    }
+                    if(i != j)
+                        MatrizRes(k,i) -= ((MatrizUni(i,j)*MatrizRes(k-1,i)))/MatrizUni(i,i);//calculando a formula de JACOBI.
+
+                     if(abs(MatrizRes(k,i)) + abs(MatrizRes(k-1,i)) < MinPrecision)
+                          this->MatrizErro(k,i) = abs(MatrizRes(k,i)) + abs(MatrizRes(k-1,i));//Calculando os erros do sistema.
                 }
             }
         }
@@ -52,22 +59,22 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 
 LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps)
 {
-        LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
+//        LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
 
-            for(int k = 2; k < MaxIterations+1; k++)
-            {
-                for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)
-                {
-                    MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
-                    for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)
-                    {
-                        if(i != j){
-                            MatrizRes(k,i) += ((MatrizUni(i,j)*MatrizRes(k-1,i))*-1)/MatrizUni(i,i);
-                        }
-                    }
-                }
-            }
-            return MatrizRes;
+//            for(int k = 2; k < MaxIterations+1; k++)
+//            {
+//                for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)
+//                {
+//                    MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
+//                    for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)
+//                    {
+//                        if(i != j){
+//                            MatrizRes(k,i) += ((MatrizUni(i,j)*MatrizRes(k-1,i))*-1)/MatrizUni(i,i);
+//                        }
+//                    }
+//                }
+//            }
+//            return MatrizRes;
 }
 
 float SistemasLineares::abs(float Valor)
@@ -76,5 +83,10 @@ float SistemasLineares::abs(float Valor)
            Valor = -Valor;
 
     return Valor;
+}
+
+void SistemasLineares::ConvDiv(LinAlg::Matrix<float> MatrizUni)
+{
+
 }
 
