@@ -9,8 +9,6 @@ string DecBin(double decVal, int maxRep)
     string resultadoFrac;
     string result;
 
-    PontFlutuante a;
-
         int numInt = (int)decVal;
         double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
         int cont = 0;                       //Contador para a parte fracionada
@@ -42,13 +40,14 @@ string DecBin(double decVal, int maxRep)
             numDec = (numDec*2) - partInt;
             cont++;
         }
+
         //----------------------------------------------------------------//
         ////Armazenando o exp////   --> Problema com a variavel Valor_Exp da classe ponto flutuante.
-        if(numInt > 0)// se o valor for maior que 0.
-        a.Valor_Exp  = resultadoInt.length();
+        //if(numInt > 0)// se o valor for maior que 0.
+            //a.Valor_Exp  = t;
 
-        else if(numInt == 0)// se o valor for igual a 0.
-        a.Valor_Exp = resultadoFrac.length();
+        //else if(numInt == 0)// se o valor for igual a 0.
+           //  GetSetValorExp(resultadoFrac.length(), false);
 
         ////----------------------------------------------------------------////
 
@@ -57,6 +56,61 @@ string DecBin(double decVal, int maxRep)
 
 
     }
+
+//    //Função de conversão decimal binario.
+//    string DecBin(double decVal, int maxRep, PontFlutuante a)
+//    {
+//        string resultadoInt;
+//        string resultadoFrac;
+//        string result;
+
+//        int numInt = (int)decVal;
+//        double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
+//        int cont = 0;                       //Contador para a parte fracionada
+
+//        //Condição para conversão da parte inteira.
+//        while(numInt != 1)
+//        {
+//            int resto = numInt%2;
+//            string resAnterior = resultadoInt;
+//            std::ostringstream strs;
+//            strs << resto;
+//            resultadoInt = strs.str() + resAnterior;
+//            numInt = (numInt - resto)/2;
+//        }
+
+//        string resAnterior = resultadoInt;
+//        std::ostringstream strs;
+//        strs << numInt;
+//        resultadoInt = strs.str() + resAnterior;
+//        //----------------------------------------------------------------//
+//        //Converção da parte fracionaria.
+//        while(cont != maxRep && numDec != 0)
+//        {
+//            int partInt = (int)(numDec*2);
+
+//            std::ostringstream strs;
+//            strs << numInt;
+//            resultadoFrac = strs.str();
+//            numDec = (numDec*2) - partInt;
+//            cont++;
+//        }
+
+//        //----------------------------------------------------------------//
+//        ////Armazenando o exp////   --> Problema com a variavel Valor_Exp da classe ponto flutuante.
+//        if(numInt > 0)// se o valor for maior que 0.
+//            a.Valor_Exp  = resultadoInt.length();
+
+//        else if(numInt == 0)// se o valor for igual a 0.
+//            a.Valor_Exp  = resultadoFrac.length();
+
+//        ////----------------------------------------------------------------////
+
+//        result = resultadoInt + resultadoFrac;
+//        return result;
+
+
+//    }
 
     //Converçao do exp
     string DecBin(int Dec, int Inf, int Sup)

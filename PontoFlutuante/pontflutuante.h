@@ -19,12 +19,10 @@ public:
 
     void setArm(double Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Armazenamento.
     void setNum(double Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Numerico.
-
-    string setExp(int Exp, int Inf, int Sup);//Monta o Exp do sistema de ponto flutuante.
-
     void printArm(){cout<<Arm<<"\n\n";}//Imprime da forma de armazenamento.
     void printNum(){cout<<Num<<"\n\n";}//Imprime da forma numerica.
 
+    string setExp(int Exp, int Inf, int Sup);//Monta o Exp do sistema de ponto flutuante.
     string getNum(){return this->Num;}//Retorna a forma numerica.
     string getArm(){return  this->Arm;}//Retorna a forma armazenamento.
 

@@ -22,10 +22,6 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
       }
 }
 
-void SistemasLineares::PivotCompleto(LinAlg::Matrix<float> &MAtrizUni, int cols)
-{
-}
-
 LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 {
 
@@ -132,7 +128,7 @@ float SistemasLineares::abs(float Valor)
     return Valor;
 }
 
-void SistemasLineares::ConvDiv(LinAlg::Matrix<float> MatrizUni)
+void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
 {
     LinAlg::Matrix<float> Ress(1,MatrizUni.getNumberOfRows());
     for(int i = 0; i <= MatrizUni.getNumberOfRows(); i++)
@@ -146,7 +142,27 @@ void SistemasLineares::ConvDiv(LinAlg::Matrix<float> MatrizUni)
         }
         if(Ress(1, i) > 1)
         {
-            cout<<"Esse sistema Diverge";
+            cout<<"O sistema não possui solução para qualquer valor inicial de X0";
+            break;
+        }
+    }
+}
+
+void SistemasLineares::CritSassenfeld(LinAlg::Matrix<float> MatrizUni)
+{
+    LinAlg::Matrix<float> Ress(1,MatrizUni.getNumberOfRows());
+    for(int i = 0; i <= MatrizUni.getNumberOfRows(); i++)
+    {
+        for(int j = 0; j <= MatrizUni.getNumberOfColumns(); j++)
+        {
+            if(i != j)
+            {
+                Ress(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
+            }
+        }
+        if(Ress(1, i) > 1)
+        {
+            cout<<"O sistema não possui solução para qualquer valor inicial de X0";
             break;
         }
     }

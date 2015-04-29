@@ -12,6 +12,7 @@ SOURCES += main.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/grafics.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/graphicproperties.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/polynom.cpp
+    MetodosPolinomiais/interpolacaopolinomial.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -28,7 +29,8 @@ HEADERS += \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
-    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp
+    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
+    MetodosPolinomiais/interpolacaopolinomial.h
 
 OTHER_FILES +=
 

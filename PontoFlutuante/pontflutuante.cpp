@@ -15,12 +15,12 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
-
+    PontFlutuante c;
     //Converte o valor Decimal.
-    result = Conv::DecBin(Dec, Mant);
+//    result = Conv::DecBin(Dec, Mant, c);
 
     //Converte o Exponencial.
-    ExpBin = setExp(this->Valor_Exp,Inf, Sup);
+    ExpBin = setExp(Valor_Exp,Inf, Sup);
 
     //Adcionando a mantissa.
     while(result.length() <= Mant)
@@ -33,7 +33,7 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
     else if (Dec >= 0)
         result = "0" + result;
 
-//    //Adcionando o Exponencial.
+    //Adcionando o Exponencial.
     if(Dec>1 || (Dec*(-1)) > 1)
         result = result + "0" + ExpBin;
 
@@ -53,7 +53,7 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     result = Conv::DecBin(Dec,Mant);
 
     //Converte o Exponencial.
-    ExpBin = setExp(Valor_Exp,Inf,Sup);
+    ExpBin = setExp(Valor_Exp, Inf, Sup);
 
     //Adcionando a mantissa.
     while(result.length() <= Mant)
@@ -66,6 +66,7 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     else if(Dec >= 0)
         result = "0," + result;
 
+   //cout<<endl<<Valor_Exp<<"--";
     //Adcionando o Exponencial.
     if(Dec>1 || (Dec*(-1)) > 1)
         result = result + "x2^" + ExpBin;
