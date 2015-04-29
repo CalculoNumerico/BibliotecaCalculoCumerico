@@ -33,13 +33,13 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
     else if (Dec >= 0)
         result = "0" + result;
 
-//    //Adcionando o Exponencial.
-    if(Dec>1 || (Dec*(-1)) > 1)
-        result = result + "0" + ExpBin;
+    //Adcionando o Exponencial.
+//    if(Dec>1 || (Dec*(-1)) > 1)
+//        result = result + "0" + ExpBin;
 
-    else
-        result =
-                result + "1" + ExpBin;
+//    else
+//        result =
+//                result + "1" + ExpBin;
 
      this->Arm = result;
 }
@@ -67,11 +67,11 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
         result = "0," + result;
 
     //Adcionando o Exponencial.
-    if(Dec>1 || (Dec*(-1)) > 1)
-        result = result + "x2^" + ExpBin;
+//    if(Dec>1 || (Dec*(-1)) > 1)
+//        result = result + "x2^" + ExpBin;
 
-    else
-        result = result + "x2^-" + ExpBin;
+//    else
+//        result = result + "x2^-" + ExpBin;
 
      this->Num = result;
 }

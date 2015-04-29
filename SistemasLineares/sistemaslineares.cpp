@@ -2,7 +2,6 @@
 
 SistemasLineares::SistemasLineares()
 {
-    this->X0 = 0;
 }
 SistemasLineares::~SistemasLineares()
 {
@@ -34,6 +33,7 @@ LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 
 LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
 {
+    //Matriz Resposta
     LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
 
     //Deixa o vetor de chute inicial padronizado como vetor linha
@@ -43,23 +43,31 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
     for(int i = 1; i < MatrizRes.getNumberOfColumns(); i++)
         MatrizRes(1,i) = this->X0(1,i);
 
-    for(int k = 2; k < MaxIterations+1; k++)//Laço para conta as linhas da MatrizRes e MatrizErro
+    //Laço para contar as linhas da Matriz Resposta
+    for(int k = 2; k < MaxIterations+1; k++)
          {
-             for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)//Laço para conta as colunas da MatrizRes, MatrizErro e linhas da MatrizUni.
+             //Laço para contar as colunas da MatrizRes, MatrizErro e linhas da MatrizUni.
+             for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
              {
-                 MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);//Divisão dos termos independentes das funções
-                 for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)//Laço para conta as colunas da MatrizUni
+                 //Divisão dos termos independentes das funções
+                 MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
+
+                 //Laço para contar as colunas da MatrizUni
+                 for(int j = 1; j < MatrizUni.getNumberOfColumns(); j++)
                  {
                      if(i != j)
-                         MatrizRes(k,i) -= ((MatrizUni(i,j)*MatrizRes(k-1,i)))/MatrizUni(i,i);//calculando a formula de JACOBI.
-
-                     //Verifica se o valor de erro d(k) é o maior encontrado
-                     if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
-                         MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
+                         //calculando a formula de JACOBI.
+                         MatrizRes(k,i) -= ((MatrizUni(i,j)*MatrizRes(k-1,i)))/MatrizUni(i,i);
                  }
-                 if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
-                     k = MaxIterations+1;
+
+                 //Verifica se o valor de erro d(k) é o maior encontrado
+                 if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
+                     MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
              }
+
+             //Limita o numero de iterações até a precisão ser obtida
+             if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
+                 k = MaxIterations+1;
          }
          return MatrizRes;
 
@@ -69,43 +77,51 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
 {
 
-        LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
+    LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
 
-        //Deixa o vetor de chute inicial padronizado como vetor linha
-        if(this->X0.getNumberOfColumns() < this->X0.getNumberOfRows())
-        {
-            ~this->X0;
-        }
-        //Insere o chute inicial na Matriz resposta
-        for(int i = 1; i < MatrizRes.getNumberOfColumns(); i++){
-            MatrizRes(1,i) = this->X0(1,i);
-        }
+           //Deixa o vetor de chute inicial padronizado como vetor linha
+           if(this->X0.getNumberOfColumns() < this->X0.getNumberOfRows())
+           {
+               ~this->X0;
+           }
+           //Insere o chute inicial na Matriz resposta
+           for(int i = 1; i < MatrizRes.getNumberOfColumns(); i++){
+               MatrizRes(1,i) = this->X0(1,i);
+           }
 
-        for(int k = 2; k <= MaxIterations; k++)
-        {
-            for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
-            {
-                float aux = 0;
+           //Laço para contar as linhas da Matriz Resposta
+           for(int k = 2; k <= MaxIterations; k++)
+           {
+               //Laço para contar as colunas da MatrizRes e linhas da MatrizUni.
+               for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
+               {
+                   float aux = 0;
 
-                for(int j = 1; j < i; j++)
-                {
-                    aux += (MatrizUni(i,j)*MatrizRes(k, j));
-                }
-                for(int j = i+1; j < MatrizUni.getNumberOfColumns(); j++)
-                {
-                    aux += (MatrizUni(i,j)*MatrizRes(k-1, j));
-                }
-                MatrizRes(k,i) = (MatrizUni(i, MatrizUni.getNumberOfColumns()) - aux)/MatrizUni(i,i);
+                   //Verificação das variáveis atualizadas (mesma linha)
+                   for(int j = 1; j < i; j++)
+                   {
+                       aux += (MatrizUni(i,j)*MatrizRes(k, j));
+                   }
 
-                //Verifica se o valor de erro d(k) é o maior encontrado
-                if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
-                    MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
-            }
+                   //Verificação das variaveis não atualizadas (linha anterior)
+                   for(int j = i+1; j < MatrizUni.getNumberOfColumns(); j++)
+                   {
+                       aux += (MatrizUni(i,j)*MatrizRes(k-1, j));
+                   }
 
-            if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
-                k = MaxIterations+1;
-        }
-        return MatrizRes;
+                   //Aplicação da formula geral (Bi-x1-x2)/Aii
+                   MatrizRes(k,i) = (MatrizUni(i, MatrizUni.getNumberOfColumns()) - aux)/MatrizUni(i,i);
+
+                   //Verifica se o valor de erro d(k) é o maior encontrado
+                   if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
+                       MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
+               }
+
+               //Limita o numero de iterações até a precisão ser obtida
+               if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
+                   k = MaxIterations+1;
+           }
+           return MatrizRes;
     }
 
 float SistemasLineares::abs(float Valor)
@@ -129,7 +145,10 @@ void SistemasLineares::ConvDiv(LinAlg::Matrix<float> MatrizUni)
             }
         }
         if(Ress(1, i) > 1)
+        {
             cout<<"Esse sistema Diverge";
+            break;
+        }
     }
 }
 

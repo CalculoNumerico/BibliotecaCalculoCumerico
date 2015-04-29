@@ -44,11 +44,11 @@ string DecBin(double decVal, int maxRep)
         }
         //----------------------------------------------------------------//
         ////Armazenando o exp////   --> Problema com a variavel Valor_Exp da classe ponto flutuante.
-        //if((int)decVal > 0)// se o valor for maior que 0.
-        //a.Valor_Exp  = resultadoInt.length();
+        if(numInt > 0)// se o valor for maior que 0.
+        a.Valor_Exp  = resultadoInt.length();
 
-        //else if((int)decVal == 0)// se o valor for igual a 0.
-        //a.Valor_Exp = resultadoFrac.length();
+        else if(numInt == 0)// se o valor for igual a 0.
+        a.Valor_Exp = resultadoFrac.length();
 
         ////----------------------------------------------------------------////
 
@@ -57,6 +57,7 @@ string DecBin(double decVal, int maxRep)
 
 
     }
+
     //Converçao do exp
     string DecBin(int Dec, int Inf, int Sup)
     {
@@ -81,10 +82,11 @@ string DecBin(double decVal, int maxRep)
             resultado = strs.str() + resAnterior;
            }
            else if(Dec > Sup && Dec < Inf)
-               cout<<"Valor do expoente é maior ou menor que os limites inferior ou superior";
+               cout<<"Erro com o valor do exp, limites superior ou inferior.";
 
            return resultado;
     }
+
     //Conver;áo de binario para decimal
     string BinDec(string binInt, string binDec)
     {
