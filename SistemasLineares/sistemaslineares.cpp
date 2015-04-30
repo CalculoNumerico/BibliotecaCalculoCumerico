@@ -24,8 +24,45 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
 
 LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 {
+         int n = MatrizUni.getNumberOfColumns();
+         float fator, sum;
 
-}
+         LinAlg::Matrix<float> b(1, n-1);
+         b = ~MatrizUni.GetColumn(n);
+         LinAlg::Matrix<float> x(1,n-1);
+         for(int K=1; K < n; K++)
+         {
+             for(int i=(K+1); i < n; i++)
+             {
+                 fator = MatrizUni(i,K)/MatrizUni(K,K);
+
+                 for(int j = K+1; j<= n-1; j++)
+                 {
+                    b(1,j) = b(1,j) - (fator * MatrizUni(2,2));
+                    b(1,j) = b(1,j) - (fator * MatrizUni(2,2));
+                 }
+
+              b(1,i) = b(1,i) - (fator * b(1,K));
+              MatrizUni(i,K) = 0.0f;
+             }
+         }
+
+         x(1,n-1)=b(1,n-1)/MatrizUni(n-1,n-1);
+
+         for(int i= n-1; i>=1; i--)
+          {
+             sum = 0.0f;
+
+             for(int j=i+1; j<=n; j++)
+             {
+                 sum = sum + MatrizUni(i,j) * x(1,j);
+             }
+
+              x(1,i) = (b(1,i) - sum)/MatrizUni(i,i);
+           }
+
+         return x;
+    }
 
 LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
 {

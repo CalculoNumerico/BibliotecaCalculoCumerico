@@ -27,6 +27,14 @@ int main()
 //a.printNum();
 ////---------------------------------------------------------////
 
+////Exemplo da classe SistemasLineares - Gauss//
+//LinAlg::Matrix<float> a;
+//LinAlg::Matrix<float> b;
+//SistemasLineares g;
+//a = "1,2,3,2;4,5,6,2;7,8,9,2";
+//b = g.Gauss(a);
+//LinAlg::Print(b);
+////--------------------------------------------------------------------------////
 ////Exemplo da classe SistemasLineares - GaussJacobi//
 //SistemasLineares G;
 //LinAlg::Matrix<float> A(3,4), X0(1,4);
