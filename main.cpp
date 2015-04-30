@@ -19,12 +19,12 @@ int main()
 ////------------------------------------------------////
 
 ////Exemplo da classe ponto flutuante/////
-PontFlutuante a;
-a.setArm(10.25, 5, -5, 5);
-a.setNum(6.5, 7, -5, 5);
+//PontFlutuante a;
+//a.setArm(10.25, 5, -5, 5);
+//a.setNum(6.5, 7, -5, 5);
 
-a.printArm();
-a.printNum();
+//a.printArm();
+//a.printNum();
 ////---------------------------------------------------------////
 
 ////Exemplo da classe SistemasLineares - GaussJacobi//

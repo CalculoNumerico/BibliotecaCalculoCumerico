@@ -19,7 +19,7 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
     result = Conv::DecBin(Dec, Mant);
 
     //Converte o Exponencial.
-    this->Valor_Exp = Conv::DecBinExp(Dec, 10);
+    this->Valor_Exp = Conv::getExp(Dec, 10);
     ExpBin = setExp(Valor_Exp,Inf, Sup);
 
     //Verifica tamanho do Exp.
@@ -57,7 +57,7 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     result = Conv::DecBin(Dec,Mant);
 
     //Converte o Exponencial.
-    this->Valor_Exp = Conv::DecBinExp(Dec, 10);
+    this->Valor_Exp = Conv::getExp(Dec, 10);
     ExpBin = setExp(Valor_Exp, Inf, Sup);
 
     //Verifica tamanho do Exp.

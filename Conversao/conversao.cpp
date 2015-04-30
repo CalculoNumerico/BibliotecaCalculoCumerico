@@ -48,7 +48,7 @@ string DecBin(double decVal, int maxRep)
     }
 
     //Função de conversão decimal binario.
-    int DecBinExp(double decVal, int maxRep)
+    int getExp(double decVal, int maxRep)
     {
         string resultadoInt;
         string resultadoFrac;

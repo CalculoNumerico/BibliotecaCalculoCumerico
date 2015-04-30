@@ -12,7 +12,7 @@ using namespace std;
 namespace Conv
 {
     string DecBin(double decVal, int maxRep);//Converte de Decimal para Binario.
-    int DecBinExp(double decVal, int maxRep);
+    int getExp(double decVal, int maxRep);
     string DecBin(int Dec, int Inf, int Sup);//Converte de Decimal para Binario.
     string BinDec(string binInt, string binDec);//Converte de Binario para Decimal.
 }
