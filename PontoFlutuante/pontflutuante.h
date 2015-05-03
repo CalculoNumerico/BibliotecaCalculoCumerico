@@ -17,8 +17,8 @@ public:
     PontFlutuante();
     ~PontFlutuante();
 
-    void setArm(double Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Armazenamento.
-    void setNum(double Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Numerico.
+    void setArm(float Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Armazenamento.
+    void setNum(float Dec, int Mant, int Inf, int Sup);//Monta o ponto flutuante da forma de Numerico.
     void printArm(){cout<<Arm<<"\n\n";}//Imprime da forma de armazenamento.
     void printNum(){cout<<Num<<"\n\n";}//Imprime da forma numerica.
 

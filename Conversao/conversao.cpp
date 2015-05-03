@@ -3,15 +3,23 @@
 namespace Conv
 {
 //Função de conversão decimal binario.
-string DecBin(double decVal, int maxRep)
+string DecBin(float decVal, int maxRep)
 {
     string resultadoInt;
     string resultadoFrac;
     string result;
 
         int numInt = (int)decVal;
-        double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
+        float numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
         int cont = 0;                       //Contador para a parte fracionada
+
+        //Situação para quando o Valor for negativo.
+        if(numInt < 0)
+        {
+            numInt *= -1;
+            numDec *= -1;
+        }
+        //--------------------------------------------------//
 
         //Condição para conversão da parte inteira.
         while(numInt != 1)
@@ -38,24 +46,26 @@ string DecBin(double decVal, int maxRep)
             strs << numInt;
             resultadoFrac = strs.str();
             numDec = (numDec*2) - partInt;
-            cont++;
+        cont++;
         }
-
         //----------------------------------------------------------------//
-
         result = resultadoInt + resultadoFrac;
-        return result;
-    }
 
-    //Função de conversão decimal binario.
-    int getExp(double decVal, int maxRep)
+        if(decVal < 0)
+            result = "-" + result;
+
+        return result;
+}
+
+    //Função para retorna o valor do exp do ponto flutuante.
+    int getExp(float decVal, int maxRep)
     {
         string resultadoInt;
         string resultadoFrac;
         int result;
 
         int numInt = (int)decVal;
-        double numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
+        float numDec = decVal - numInt;    //Parte decimal do valor a ser convertido
         int cont = 0;                       //Contador para a parte fracionada
 
         //Condição para conversão da parte inteira.
@@ -87,17 +97,15 @@ string DecBin(double decVal, int maxRep)
         }
 
         //----------------------------------------------------------------//
-        ////Armazenando o exp////   --> Problema com a variavel Valor_Exp da classe ponto flutuante.
+        ////Armazenando o exp////
         if(numInt > 0)// se o valor for maior que 0.
             result  = resultadoInt.length();
 
 
         else if(numInt == 0)// se o valor for igual a 0.
             result  = resultadoFrac.length();
-
         ////----------------------------------------------------------------////
 
-       // result = resultadoInt + resultadoFrac;
         return result;
     }
 
@@ -139,7 +147,7 @@ string DecBin(double decVal, int maxRep)
             //Convercáo da parte inteira
             for(int i = binInt.length()-1; i >= 0; i--)
             {
-                Resultado += double(binInt.at(i)-48)*pow(2,indice);
+                Resultado += float(binInt.at(i)-48)*pow(2,indice);
                 indice++;
             }
             //----------------------------------------------------------------//
@@ -148,7 +156,7 @@ string DecBin(double decVal, int maxRep)
             indice = -1;
             for(int i = 0; i <= binDec.length()-1; i++)
             {
-                Resultado += double(binDec.at(i)-48)*pow(2,indice);
+                Resultado += float(binDec.at(i)-48)*pow(2,indice);
                 indice--;
             }
             //----------------------------------------------------------------//

@@ -10,7 +10,7 @@ PontFlutuante::~PontFlutuante()
 {
 }
 
-void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
+void PontFlutuante::setArm(float Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
@@ -48,7 +48,7 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
      this->Arm = result;
 }
 
-void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
+void PontFlutuante::setNum(float Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
