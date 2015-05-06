@@ -104,7 +104,7 @@ string DecBin(float decVal, int maxRep)
 
         else if(numInt == 0)// se o valor for igual a 0.
             result  = resultadoFrac.length();
-        ////----------------------------------------------------------------////
+        ////------------------------////
 
         return result;
     }

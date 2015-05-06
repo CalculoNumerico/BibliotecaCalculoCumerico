@@ -32,21 +32,21 @@ int main()
 ////---------------------------------------------------------////
 
 ////Exemplo da classe SistemasLineares - Gauss//
-//LinAlg::Matrix<float> a;
-//LinAlg::Matrix<float> b;
-//SistemasLineares g;
-//a = "1,2,3,4;5,6,7,8;9,1,2,3";
-//b = g.Gauss(a);
-//LinAlg::Print(b);
+    LinAlg::Matrix<float> a;
+    LinAlg::Matrix<float> b;
+    SistemasLineares g;
+    a = "1,2,3,4;5,6,7,8;9,1,2,3";
+    b = g.Gauss(a);
+    LinAlg::Print(b);
 ////--------------------------------------------------------------------------////
 ////Exemplo da classe SistemasLineares - GaussJacobi//
-SistemasLineares G;
-LinAlg::Matrix<float> A(3,4), X0(1,4);
-G.setX0(X0);
+//SistemasLineares G;
+//LinAlg::Matrix<float> A(3,4), X0(1,4);
+//G.setX0(X0);
 
-A = "4,2,1,2;-2,7,1,0;1,-1,5,1";
-cout<<A;
-cout<<endl<<G.GaussJacobi(A, 5, 0.01)<<endl;
+//A = "4,2,1,2;2,7,1,0;1,1,5,1";
+//cout<<A;
+//cout<<endl<<G.GaussJacobi(A, 12, 0.01)<<endl;
 ////-------------------------------------------------------------------------------------//
 
 ////Exempo da classe SistemasLineares - GaussSeidel//
