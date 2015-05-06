@@ -60,20 +60,22 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
     //    //Insere o chute inicial na Matriz resposta
     for(int i = 1; i < MatrizRes.getNumberOfColumns() - 1; i++)
         x0(1,i) = this->X0(1,i);
-
+    //Laço para contar as linhas da MatrizUni e Matriz C.
     for(int i = 1; i <= MatrizUni.getNumberOfRows(); i++)
-    {
+    {   //Laço para contar as colunas da MAtrizUni e Matriz C.
         for(int j = 1; j < MatrizUni.getNumberOfColumns(); j++)
         {
             if(i != j)
-                C(i,j) = - MatrizUni(i,j)/MatrizUni(i,i);
+                C(i,j) = - MatrizUni(i,j)/MatrizUni(i,i);//Matriz com a diagonal zerada.
         }
-        g(i,1) = MatrizUni(i,MatrizUni.getNumberOfColumns()) / MatrizUni(i,i);
+        g(i,1) = MatrizUni(i,MatrizUni.getNumberOfColumns()) / MatrizUni(i,i);//Matriz dos termos independentes.
     }
 
+//Habilitar para testes.
 //    cout<<"\n"<<C<<"\n";
 //    cout<<g<<"\n";
 //    cout<<x0<<"\n";
+
     MatrizRes = ~x0;
         for(int z = 1; z < MaxIterations; z++)
         {
@@ -85,7 +87,6 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 //        {
 //            break;
 //        }
-
     return MatrizRes;
 }
 
@@ -148,17 +149,17 @@ float SistemasLineares::abs(float Valor)
 
 void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
 {
-    LinAlg::Matrix<float> Ress(1,MatrizUni.getNumberOfRows());
+    LinAlg::Matrix<float> MatrizRes(1,MatrizUni.getNumberOfRows());
     for(int i = 0; i <= MatrizUni.getNumberOfRows(); i++)
     {
         for(int j = 0; j <= MatrizUni.getNumberOfColumns(); j++)
         {
             if(i != j)
             {
-                Ress(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
+                MatrizRes(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
             }
         }
-        if(Ress(1, i) > 1)
+        if(MatrizRes(1, i) > 1)
         {
             cout<<"O sistema não possui solução para qualquer valor inicial de X0";
             break;
@@ -168,21 +169,6 @@ void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
 
 void SistemasLineares::CritSassenfeld(LinAlg::Matrix<float> MatrizUni)
 {
-    LinAlg::Matrix<float> Ress(1,MatrizUni.getNumberOfRows());
-    for(int i = 0; i <= MatrizUni.getNumberOfRows(); i++)
-    {
-        for(int j = 0; j <= MatrizUni.getNumberOfColumns(); j++)
-        {
-            if(i != j)
-            {
-                Ress(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
-            }
-        }
-        if(Ress(1, i) > 1)
-        {
-            cout<<"O sistema não possui solução para qualquer valor inicial de X0";
-            break;
-        }
-    }
+
 }
 

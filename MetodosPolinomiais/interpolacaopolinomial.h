@@ -12,9 +12,6 @@ public:
 
     LinAlg::Matrix<float> Vandermonde();
     LinAlg::Matrix<float> Lagrange();
-    LinAlg::Matrix<float> Newton();
-
-
 };
 
 #endif // INTERPOLACAOPOLINOMIAL_H
