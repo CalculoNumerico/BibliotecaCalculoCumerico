@@ -82,11 +82,12 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
             x0 =  (C * x0) + g;
             MatrizRes = MatrizRes||~x0;
 //            e = abs(MatrizRes - MatrizRes);
+//            if(abs(MatrizRes(,z+1) - MatrizRes(,z)) < MinPrecision)
+//            {
+//                break;
+//            }
         }
-//        if(abs(MatrizRes(,z+1) - MatrizRes(,z)) < MinPrecision)
-//        {
-//            break;
-//        }
+
     return MatrizRes;
 }
 
@@ -139,13 +140,6 @@ LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> Matriz
    }
    return MatrizRes;
 }
-float SistemasLineares::abs(float Valor)
-{
-    if(Valor < 0)
-           Valor = -Valor;
-
-    return Valor;
-}
 
 void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
 {
@@ -159,7 +153,7 @@ void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
                 MatrizRes(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
             }
         }
-        if(MatrizRes(1, i) > 1)
+        if(Ress(1, i) > 1)
         {
             cout<<"O sistema não possui solução para qualquer valor inicial de X0";
             break;
@@ -171,4 +165,13 @@ void SistemasLineares::CritSassenfeld(LinAlg::Matrix<float> MatrizUni)
 {
 
 }
+
+float SistemasLineares::abs(float Valor)
+{
+    if(Valor < 0)
+           Valor = -Valor;
+
+    return Valor;
+}
+
 
