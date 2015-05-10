@@ -11,8 +11,9 @@ SOURCES += main.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/glview.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/grafics.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/graphicproperties.cpp \
-#    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/polynom.cpp
-    MetodosPolinomiais/interpolacaopolinomial.cpp
+    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/polynom.cpp \
+    FileReader/filereader.cpp
+
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -21,16 +22,16 @@ HEADERS += \
     Conversao/conversao.h \
     PontoFlutuante/pontflutuante.h \
     SistemasLineares/sistemaslineares.h \
-    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/glview.h \
+#    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/glview.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/grafics.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/graphicLibs/graphicproperties.h \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/identifiers.h \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
-#    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h \
+    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
-    MetodosPolinomiais/interpolacaopolinomial.h
+    FileReader/filereader.h
 
 OTHER_FILES +=
 

@@ -5,8 +5,6 @@ namespace Conv
 //Função de conversão decimal binario.
 string DecBin(float decVal, int maxRep)
 {
-    string resultadoInt;
-    string resultadoFrac;
     string result;
 
         int numInt = (int)decVal;
@@ -22,20 +20,23 @@ string DecBin(float decVal, int maxRep)
         //--------------------------------------------------//
 
         //Condição para conversão da parte inteira.
-        while(numInt != 1)
+        if(numInt>0)
         {
-            int resto = numInt%2;
-            string resAnterior = resultadoInt;
-            std::ostringstream strs;
-            strs << resto;
-            resultadoInt = strs.str() + resAnterior;
-            numInt = (numInt - resto)/2;
-        }
+            while(numInt != 1)
+            {
+                int resto = numInt%2;
+                string resAnterior = result;
+                std::ostringstream strs;
+                strs << resto;
+                result = strs.str() + resAnterior;
+                numInt = (numInt - resto)/2;
+            }
 
-        string resAnterior = resultadoInt;
-        std::ostringstream strs;
-        strs << numInt;
-        resultadoInt = strs.str() + resAnterior;
+            string resAnterior = result;
+            std::ostringstream strs;
+            strs << numInt;
+            result = strs.str() + resAnterior;
+        }
         //----------------------------------------------------------------//
         //Converção da parte fracionaria.
         while(cont != maxRep && numDec != 0)
@@ -44,13 +45,11 @@ string DecBin(float decVal, int maxRep)
 
             std::ostringstream strs;
             strs << numInt;
-            resultadoFrac = strs.str();
+            result = strs.str();
             numDec = (numDec*2) - partInt;
         cont++;
         }
         //----------------------------------------------------------------//
-        result = resultadoInt + resultadoFrac;
-
         if(decVal < 0)
             result = "-" + result;
 
@@ -138,7 +137,7 @@ string DecBin(float decVal, int maxRep)
            return resultado;
     }
 
-    //Conver;áo de binario para decimal
+    //Convercao de binario para decimal
     string BinDec(string binInt, string binDec)
     {
         int indice = 0;

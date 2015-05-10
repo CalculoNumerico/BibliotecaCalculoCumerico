@@ -33,11 +33,9 @@ LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
             float m = MatrizUni(j,i)/MatrizUni(i,i);
             //Laço para contagem das colunas da equação.
             for(int z = i ; z <= MatrizUni.getNumberOfColumns(); z++)
-            {
                 MatrizUni(j,z) = MatrizUni(j,z) - m*MatrizUni(i,z);
 
-            }
-    //  cout<<"\n"<<MatrizUni;   //Habilitar para testes.
+            //cout<<"\n"<<MatrizUni;   //Habilitar para testes.
         }
     }
     MatrizRes = MatrizUni;
@@ -153,7 +151,7 @@ void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
                 MatrizRes(1, i) += MatrizUni(i,j)/MatrizUni(i,i);
             }
         }
-        if(Ress(1, i) > 1)
+        if(MatrizRes(1, i) > 1)
         {
             cout<<"O sistema não possui solução para qualquer valor inicial de X0";
             break;

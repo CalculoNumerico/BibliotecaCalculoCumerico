@@ -2,6 +2,7 @@
 #include "Conversao/conversao.h"
 #include "PontoFlutuante/pontflutuante.h"
 #include "SistemasLineares/sistemaslineares.h"
+#include "FileReader/filereader.h"
 #include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
 #include <sstream>
 
@@ -9,6 +10,11 @@ using namespace std;
 
 int main()
 {
+//    LinAlg::Matrix<float> A(3,3);
+//    LinAlg::Matrix<float> B(3,3);
+//    FileReader c;
+//    B = c.setDados(A,1,9,1);
+//    cout<<B;
 ////Exemplo da classe conversao////
 //   string A, B;
 //   A =  Conv::BinDec("101", "1");
@@ -42,7 +48,6 @@ int main()
 //SistemasLineares G;
 //LinAlg::Matrix<float> A(3,4), X0(1,4);
 //G.setX0(X0);
-
 //A = "4,2,1,2;2,7,1,0;1,1,5,1";
 //cout<<A;
 //cout<<endl<<G.GaussJacobi(A, 12, 0.01)<<endl;
@@ -51,10 +56,8 @@ int main()
 ////Exempo da classe SistemasLineares - GaussSeidel//
 // SistemasLineares G;
 //LinAlg::Matrix<float> A(4,5), X0(1,4);
-
 // G.setX0(X0);
 // A = "5,1,1,5;1,3,1,6;3,1,6,0";
-
 //cout<<A;
 //cout<<endl<<G.GaussSeidel(A, 5, 0.01)<<endl;
 ////--------------------------------------------------------------//
