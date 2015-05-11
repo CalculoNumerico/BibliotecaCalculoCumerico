@@ -19,6 +19,7 @@ public:
 
     LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
     LinAlg::Matrix<float> FatLU(LinAlg::Matrix<float> MatrizUni);
+
     LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
     LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
 

@@ -37,12 +37,13 @@ int main()
 ////-----------------------------------------////
 
 ////Exemplo da classe SistemasLineares - Gauss//
-//    LinAlg::Matrix<float> a;
-//    LinAlg::Matrix<float> b;
-//    SistemasLineares g;
-//    a = "1,2,3,4;5,6,7,8;9,1,2,3";
-//    b = g.Gauss(a);
-//    LinAlg::Print(b);
+    LinAlg::Matrix<float> a;
+    LinAlg::Matrix<float> b;
+    SistemasLineares g;
+    a = "1,2,3,4;5,6,7,8;9,1,2,3";
+    b = g.Gauss(a);
+    a = g.FatLU(b);
+    LinAlg::Print(a);
 ////-----------------------------------------------------////
 ////Exemplo da classe SistemasLineares - GaussJacobi//
 //SistemasLineares G;

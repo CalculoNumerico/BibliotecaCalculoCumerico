@@ -12,7 +12,8 @@ SOURCES += main.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/grafics.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/graphicproperties.cpp \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/polynom.cpp \
-    FileReader/filereader.cpp
+    FileReader/filereader.cpp \
+    InterpolaçãoPolinomial/interpolacaopolinomial.cpp
 
 
 include(deployment.pri)
@@ -31,7 +32,8 @@ HEADERS += \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/polynom.h \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
-    FileReader/filereader.h
+    FileReader/filereader.h \
+    InterpolaçãoPolinomial/interpolacaopolinomial.h
 
 OTHER_FILES +=
 

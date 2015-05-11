@@ -42,20 +42,22 @@ LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 
     return MatrizRes;
     }
-LinAlg::Matrix<float> SistemasLineares::FatLU(LinAlg::Matrix<float> MatrizUni)
+LinAlg::Matrix<float> SistemasLineares::FatLU(LinAlg::Matrix<float> Matriz)
 {
     LinAlg::Matrix<float> MatrizRes;
     SistemasLineares a;
-    MatrizRes = a.Gauss(MatrizUni);
 
-    for(int i = 1; i <=  MatrizUni.getNumberOfRows(); i++)
+    MatrizRes = a.Gauss(Matriz);
+    MatrizRes = Matriz;
+
+    for(int i = 1; i <= Matriz.getNumberOfRows();i++)
     {
-        for(int j = 1; j <= MatrizUni.getNumberOfColumns(); j++)
+        for(int j = 1; j < Matriz.getNumberOfColumns(); j++)
         {
             if(i < j)
             {
-                MatrizRes(j,i) = MatrizRes(i,j);//Trocando a linha pela coluna para passar o valor que está a cima para baixo.
-                MatrizRes(i,j) = 0;//Zerando o valor anterior para que não fique com os valores iguais tanto em cima como em baixo.
+                MatrizRes(j,i) = Matriz(i,j);//trocando os valores na matriz.
+                MatrizRes(i,j) = 0;
             }
         }
     }
