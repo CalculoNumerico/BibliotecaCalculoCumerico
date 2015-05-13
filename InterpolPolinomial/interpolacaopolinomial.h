@@ -13,7 +13,7 @@ public:
     InterpolacaoPolinomial();
 
     LinAlg::Matrix<float> Init_Vetor_Polynom(unsigned Valor_Ini, unsigned Valor_Fin,unsigned Step);
-    LinAlg::Matrix<float> MatrizVandermonde(LinAlg::Matrix<double> Valores_X);
+    LinAlg::Matrix<float> MatrizVandermonde(LinAlg::Matrix<float> Valores_X);
     LinAlg::Matrix<float> Set_Polinomio(LinAlg::Matrix<float> MatrizVandermonde, LinAlg::Matrix<float> Valores_Y);
 
 
