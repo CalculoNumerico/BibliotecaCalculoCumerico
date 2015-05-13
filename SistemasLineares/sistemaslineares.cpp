@@ -41,27 +41,6 @@ LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
     MatrizRes = MatrizUni;
 
     return MatrizRes;
-    }
-LinAlg::Matrix<float> SistemasLineares::FatLU(LinAlg::Matrix<float> Matriz)
-{
-    LinAlg::Matrix<float> MatrizRes;
-    SistemasLineares a;
-
-    MatrizRes = a.Gauss(Matriz);
-    MatrizRes = Matriz;
-
-    for(int i = 1; i <= Matriz.getNumberOfRows();i++)
-    {
-        for(int j = 1; j < Matriz.getNumberOfColumns(); j++)
-        {
-            if(i < j)
-            {
-                MatrizRes(j,i) = Matriz(i,j);//trocando os valores na matriz.
-                MatrizRes(i,j) = 0;
-            }
-        }
-    }
-    return MatrizRes;
 }
 
 LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
@@ -191,6 +170,23 @@ float SistemasLineares::abs(float Valor)
            Valor = -Valor;
 
     return Valor;
+}
+
+void SistemasLineares::LU_Factorization(LinAlg::Matrix<float> Matriz, LinAlg::Matrix<float> &L, LinAlg::Matrix<float> &U)//Para Matriz Quadrada.
+{
+    L = LinAlg::Eye<float>(Matriz.getNumberOfRows());
+
+    for(unsigned i = 1; i < Matriz.getNumberOfColumns(); ++i)
+    {   //Laço para contagem das linhas de MatrizUni.
+        for(unsigned j = i + 1; j <= Matriz.getNumberOfRows();  ++j)
+        {
+            L(j, i) = Matriz(j, i)/Matriz(i, i);
+            //Laço para contagem das colunas da equação.
+            for(unsigned z = i ; z <= Matriz.getNumberOfColumns(); ++z)
+                Matriz(j, z) = Matriz(j, z) - L(j, i)*Matriz(i, z);
+        }
+    }
+    U = Matriz;
 }
 
 

@@ -13,7 +13,13 @@ SOURCES += main.cpp \
 #    ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/graphicLibs/graphicproperties.cpp \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/polynom.cpp \
     FileReader/filereader.cpp \
-    InterpolaçãoPolinomial/interpolacaopolinomial.cpp
+    InterpolPolinomial/interpolacaopolinomial.cpp \
+#    ../../../../../GitHub/SistemasdeControle-master/src/modelLibs/statespace.cpp \
+#    ../../../../../GitHub/SistemasdeControle-master/src/modelLibs/model.cpp \
+#    ../../../../../GitHub/SistemasdeControle-master/src/modelLibs/simfunction.cpp \
+#    Model/modelointegrativo.cpp \
+#    Model/modelopredicao.cpp \
+#    Model/preditivo.cpp
 
 
 include(deployment.pri)
@@ -33,7 +39,13 @@ HEADERS += \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
     ../../../../../GitHub/CodigosSoftware/SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
     FileReader/filereader.h \
-    InterpolaçãoPolinomial/interpolacaopolinomial.h
+    InterpolPolinomial/interpolacaopolinomial.h \
+#    ../../../../../GitHub/SistemasdeControle-master/headers/modelLibs/statespace.h \
+#    ../../../../../GitHub/SistemasdeControle-master/headers/modelLibs/model.h \
+#    ../../../../../GitHub/SistemasdeControle-master/headers/modelLibs/simfunction.h \
+#    Model/modelointegrativo.h \
+#    Model/modelopredicao.h \
+#    Model/preditivo.h
 
 OTHER_FILES +=
 

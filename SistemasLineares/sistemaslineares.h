@@ -18,11 +18,11 @@ public:
     ~SistemasLineares();
 
     LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
-    LinAlg::Matrix<float> FatLU(LinAlg::Matrix<float> MatrizUni);
 
     LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
     LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
 
+    void LU_Factorization(LinAlg::Matrix<float> Matriz, LinAlg::Matrix<float> &L, LinAlg::Matrix<float> &U);
     void setX0(LinAlg::Matrix<float> InicialStep){this->X0 = InicialStep;}//Função para set dos Valores iniciais das sistema.
     void CritLinhas(LinAlg::Matrix<float> MatrizUni);
     void CritSassenfeld(LinAlg::Matrix<float> MatrizUni);

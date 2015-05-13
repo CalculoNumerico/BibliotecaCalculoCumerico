@@ -3,18 +3,17 @@
 #include "PontoFlutuante/pontflutuante.h"
 #include "SistemasLineares/sistemaslineares.h"
 #include "FileReader/filereader.h"
+#include "InterpolPolinomial/interpolacaopolinomial.h"
 #include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
 #include <sstream>
 
 using namespace std;
 
+
+
 int main()
 {
-//    LinAlg::Matrix<float> A(3,3);
-//    LinAlg::Matrix<float> B(3,3);
-//    FileReader c;
-//    B = c.setDados(A,1,9,1);
-//    cout<<B;
 ////Exemplo da classe conversao////
 //   string A, B;
 //   A =  Conv::BinDec("101", "1");
@@ -27,7 +26,6 @@ int main()
 //   cout<<Conv::DecBin(0.7,10)<<"\n\n";
 //  cout<<Conv::BinDec("101",0)<<"\n\n";
 ////-----------------------------------////
-
 ////Exemplo da classe ponto flutuante/////
 //PontFlutuante a;
 //a.setArm(-10.25, 6, -5, 5);
@@ -35,15 +33,16 @@ int main()
 //a.printArm();
 //a.printNum();
 ////-----------------------------------------////
-
 ////Exemplo da classe SistemasLineares - Gauss//
-    LinAlg::Matrix<float> a;
-    LinAlg::Matrix<float> b;
-    SistemasLineares g;
-    a = "1,2,3,4;5,6,7,8;9,1,2,3";
-    b = g.Gauss(a);
-    a = g.FatLU(b);
-    LinAlg::Print(a);
+//LinAlg::Matrix<float> a, b, L, U;
+//SistemasLineares g;
+//a = "1,2,3;5,6,7;9,1,2";
+////b = g.Gauss(a);
+////LinAlg::Print(b);
+//g.LU_Factorization(a,L,U);
+//cout << L << endl;
+//cout << U;
+
 ////-----------------------------------------------------////
 ////Exemplo da classe SistemasLineares - GaussJacobi//
 //SistemasLineares G;
@@ -53,7 +52,6 @@ int main()
 //cout<<A;
 //cout<<endl<<G.GaussJacobi(A, 12, 0.01)<<endl;
 ////--------------------------------------------------------------//
-
 ////Exempo da classe SistemasLineares - GaussSeidel//
 // SistemasLineares G;
 //LinAlg::Matrix<float> A(4,5), X0(1,4);
@@ -62,7 +60,13 @@ int main()
 //cout<<A;
 //cout<<endl<<G.GaussSeidel(A, 5, 0.01)<<endl;
 ////--------------------------------------------------------------//
-
+////Exempo da classe InterpolacaoPolinomial - Vandermonde//
+InterpolacaoPolinomial G;
+LinAlg::Matrix<double> A(1,4);
+A = "1,2,3,4";
+cout<<endl<<A<<endl;
+cout<<endl<<G.MatrizVandermonde(A)<<endl;
+////--------------------------------------------------------------//
     return 0;
 }
 
