@@ -7,32 +7,30 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Init_Vetor_Polynom(unsigned Valor_
 {
     unsigned size = ((Valor_Fin-Valor_Ini)/Step)+1;
     LinAlg::Matrix<float> Vetor_Polinomio(1,size);
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
     for(unsigned i = 0; i < size; i++)
     {
         Vetor_Polinomio(1,i+1) = Valor_Ini+(Step*i);
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
     return Vetor_Polinomio;
 }
-
-LinAlg::Matrix<float> InterpolacaoPolinomial::MatrizVandermonde(LinAlg::Matrix<float> Valores_X)
+LinAlg::Matrix<float> InterpolacaoPolinomial::Valores_Y(LinAlg::Matrix<float> MatrizVandermonde, LinAlg::Matrix<double> Valores_X)
 {
-    LinAlg::Matrix<float> MatrizVandermonde = Valores_X;
+    LinAlg::Matrix<float>Valores_Y;
 
-    for(unsigned i = 1; i <= Valores_X.getNumberOfolumns(); ++i)
+    return Valores_Y = MatrizVandermonde * Valores_X;
+}
+
+LinAlg::Matrix<float> InterpolacaoPolinomial::MatrizVandermonde(LinAlg::Matrix<double> Valores_X)
+{
+    LinAlg::Matrix<float> MatrizVandermonde(Valores_X.getNumberOfColumns(), Valores_X.getNumberOfColumns());
+
+    for(unsigned i = 1; i <= Valores_X.getNumberOfColumns(); ++i)
     {
         for(unsigned j = 1; j <= Valores_X.getNumberOfColumns(); ++j)
         {
-            MatrizVandermonde(j,i) = pow(Valores_X(1,j), double(i - 1));
+            MatrizVandermonde(j,i) = pow(Valores_X(1,j), double(i - 1));//Formula para montar a Linhas que vai ser o polinomio.
         }
     }
     return MatrizVandermonde;
