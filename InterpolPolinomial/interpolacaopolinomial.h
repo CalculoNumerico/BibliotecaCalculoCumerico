@@ -13,8 +13,14 @@ public:
     InterpolacaoPolinomial();
 
     LinAlg::Matrix<float> Init_Vetor_Polynom(unsigned Valor_Ini, unsigned Valor_Fin,unsigned Step);
+<<<<<<< HEAD
     LinAlg::Matrix<float> MatrizVandermonde(LinAlg::Matrix<double> Valores_X);
     LinAlg::Matrix<float> Vetor_Polinomio(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y);
+=======
+    LinAlg::Matrix<float> MatrizVandermonde(LinAlg::Matrix<float> Valores_X);
+    LinAlg::Matrix<float> Set_Polinomio(LinAlg::Matrix<float> MatrizVandermonde, LinAlg::Matrix<float> Valores_Y);
+
+>>>>>>> origin/master
 
 };
 
