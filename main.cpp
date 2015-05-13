@@ -63,9 +63,11 @@ int main()
 ////Exempo da classe InterpolacaoPolinomial - Vandermonde//
 InterpolacaoPolinomial G;
 LinAlg::Matrix<double> A(1,4);
+LinAlg::Matrix<float> B(4,1);
 A = "1,2,3,4";
 cout<<endl<<A<<endl;
 cout<<endl<<G.MatrizVandermonde(A)<<endl;
+cout<<endl<<G.Vetor_Polinomio(A,B)<<endl;
 ////--------------------------------------------------------------//
     return 0;
 }
