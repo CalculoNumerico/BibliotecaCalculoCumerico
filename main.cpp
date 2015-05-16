@@ -36,9 +36,9 @@ int main()
 ////Exemplo da classe SistemasLineares - Gauss//
 //LinAlg::Matrix<float> a, b, L, U;
 //SistemasLineares g;
-//a = "1,2,3;5,6,7;9,1,2";
-////b = g.Gauss(a);
-////LinAlg::Print(b);
+//a = "1,2,3, 4;5,6,7, 8;9,1 ,2, 3";
+//b = g.Gauss(a);
+//LinAlg::Print(b);
 //g.LU_Factorization(a,L,U);
 //cout << L << endl;
 //cout << U;
@@ -61,14 +61,14 @@ int main()
 //cout<<endl<<G.GaussSeidel(A, 5, 0.01)<<endl;
 ////--------------------------------------------------------------//
 ////Exempo da classe InterpolacaoPolinomial - Vandermonde//
-InterpolacaoPolinomial G;
-LinAlg::Matrix<double> A(1,4);
-LinAlg::Matrix<float> B(4,1);
-A = "1,2,3,4";
-cout<<endl<<A<<endl;
-cout<<endl<<G.MatrizVandermonde(A)<<endl;
-cout<<endl<<G.Vetor_Polinomio(A,B)<<endl;
-////--------------------------------------------------------------//
+//InterpolacaoPolinomial G;
+//LinAlg::Matrix<double> A;
+//LinAlg::Matrix<float> B;
+//A = "0.5,0.6,0.7";
+//B = "0.4794; 0.5646; 0.6442";
+//cout<<endl<<(A|B)<<endl;
+//cout<<endl<<G.Polinomio_Vandermonde(A,B)<<endl;
+////---------------------------------------------------------//
     return 0;
 }
 

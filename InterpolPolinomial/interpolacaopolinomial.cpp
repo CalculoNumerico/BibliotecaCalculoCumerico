@@ -15,6 +15,7 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Init_Vetor_Polynom(unsigned Valor_
 
     return Vetor_Polinomio;
 }
+
 LinAlg::Matrix<float> InterpolacaoPolinomial::Valores_Y(LinAlg::Matrix<float> MatrizVandermonde, LinAlg::Matrix<double> Valores_X)
 {
     LinAlg::Matrix<float>Valores_Y;
@@ -36,21 +37,36 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::MatrizVandermonde(LinAlg::Matrix<d
     return MatrizVandermonde;
 }
 
-LinAlg::Matrix<float> InterpolacaoPolinomial::Vetor_Polinomio(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y)
+LinAlg::Matrix<float> InterpolacaoPolinomial::Polinomio_Vandermonde(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y)
 {
-    LinAlg::Matrix<float> MatrizVandermonde(Valores_X.getNumberOfColumns(), Valores_X.getNumberOfColumns());
+    LinAlg::Matrix<float> MatVandermonde(Valores_X.getNumberOfColumns(), Valores_X.getNumberOfColumns());
     LinAlg::Matrix<float> VetorPolinomio(1,Valores_X.getNumberOfColumns());
     SistemasLineares SL;
+    ////Monta a Matriz de Vandermonde
+    MatVandermonde = MatrizVandermonde(Valores_X);
+    cout << endl << (MatVandermonde|Valores_Y) << endl;
+    ////Aplica o Metodo de Gauss
+    VetorPolinomio = SL.Gauss(MatVandermonde | Valores_Y);
+    cout << VetorPolinomio;
+    return VetorPolinomio;
+}
 
-    for(unsigned i = 1; i <= Valores_X.getNumberOfColumns(); ++i)
+LinAlg::Matrix<float> InterpolacaoPolinomial::Polinomio_Lagrange(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y)
+{
+    LinAlg::Matrix<float> VetorPolinomio(1, Valores_X.getNumberOfColumns());
+    LinAlg::Matrix<float> P;
+
+    for(unsigned i = 1; i <= Valores_X.getNumberOfColumns() ; ++i)
     {
+        P(1,i) = 1;
         for(unsigned j = 1; j <= Valores_X.getNumberOfColumns(); ++j)
         {
-            MatrizVandermonde(j,i) = pow(Valores_X(1,j), double(i - 1));
+            if(i != j)
+                P(1, i) = (('X' - Valores_X(0, j)) / (Valores_X(1, i) - Valores_X(1, j))) * P(1, i);
         }
     }
+    for(unsigned i = 1; i <= Valores_X.getNumberOfColumns(); ++i)
+        VetorPolinomio(1, i) = VetorPolinomio(1, i) + P(1, i) * Valores_Y(i,1);
 
-    MatrizVandermonde = SL.Gauss(MatrizVandermonde);
-
-    return MatrizVandermonde;
+    return VetorPolinomio;
 }

@@ -12,7 +12,7 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
     SistemasLineares A;
     LinAlg::Matrix<float> AUX;
 
-        for(int i = cols + 1; i <= MatrizUni.getNumberOfRows(); i++){
+        for(unsigned i = cols + 1; i <= MatrizUni.getNumberOfRows(); i++){
             if(abs(MatrizUni(cols,cols)) < abs(MatrizUni(i,cols)))
             {
 //                AUX = LinAlg::Matrix<float>::GetRow(cols);
@@ -24,23 +24,32 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
 
 LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 {
-    LinAlg::Matrix<float> MatrizRes = MatrizUni;
+    LinAlg::Matrix<float> MatrizGauss;
     //Laço para contagem das colunas de MatrizUni.
-    for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
+    for(unsigned i = 1; i < MatrizUni.getNumberOfColumns(); i++)
     {   //Laço para contagem das linhas de MatrizUni.
-        for(int j = i + 1; j <= MatrizUni.getNumberOfRows();  j++)
+        for(unsigned j = i + 1; j <= MatrizUni.getNumberOfRows();  j++)
         {
             float m = MatrizUni(j,i)/MatrizUni(i,i);
             //Laço para contagem das colunas da equação.
-            for(int z = i ; z <= MatrizUni.getNumberOfColumns(); z++)
+            for(unsigned z = i ; z <= MatrizUni.getNumberOfColumns(); z++)
                 MatrizUni(j,z) = MatrizUni(j,z) - m*MatrizUni(i,z);
-
-            //cout<<"\n"<<MatrizUni;   //Habilitar para testes.
         }
     }
-    MatrizRes = MatrizUni;
 
-    return MatrizRes;
+    MatrizGauss = LinAlg::Zeros<float>(1, MatrizUni.getNumberOfRows());
+    float R;
+    for(unsigned i = 1; i <= MatrizUni.getNumberOfRows(); ++i)
+    {
+        unsigned k = MatrizUni.getNumberOfRows() - i + 1;
+        R = 0;
+        for(unsigned j = k + 1; j <= MatrizUni.getNumberOfColumns() - 1; ++j)
+                R = R + MatrizUni(k, j) * MatrizGauss(1, j);
+
+        MatrizGauss(1, k) = (MatrizUni(k, MatrizUni.getNumberOfColumns()) - R) / MatrizUni(k, k);
+    }
+
+    return MatrizGauss;
 }
 
 LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
@@ -56,12 +65,12 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
     if(this->X0.getNumberOfColumns() < this->X0.getNumberOfRows())
         ~this->X0;
     //    //Insere o chute inicial na Matriz resposta
-    for(int i = 1; i < MatrizRes.getNumberOfColumns() - 1; i++)
+    for(unsigned i = 1; i < MatrizRes.getNumberOfColumns() - 1; i++)
         x0(1,i) = this->X0(1,i);
     //Laço para contar as linhas da MatrizUni e Matriz C.
-    for(int i = 1; i <= MatrizUni.getNumberOfRows(); i++)
+    for(unsigned i = 1; i <= MatrizUni.getNumberOfRows(); i++)
     {   //Laço para contar as colunas da MAtrizUni e Matriz C.
-        for(int j = 1; j < MatrizUni.getNumberOfColumns(); j++)
+        for(unsigned j = 1; j < MatrizUni.getNumberOfColumns(); j++)
         {
             if(i != j)
                 C(i,j) = - MatrizUni(i,j)/MatrizUni(i,i);//Matriz com a diagonal zerada.
@@ -69,13 +78,8 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
         g(i,1) = MatrizUni(i,MatrizUni.getNumberOfColumns()) / MatrizUni(i,i);//Matriz dos termos independentes.
     }
 
-//Habilitar para testes.
-//    cout<<"\n"<<C<<"\n";
-//    cout<<g<<"\n";
-//    cout<<x0<<"\n";
-
     MatrizRes = ~x0;
-        for(int z = 1; z < MaxIterations; z++)
+        for(unsigned z = 1; z < MaxIterations; z++)
         {
             x0 =  (C * x0) + g;
             MatrizRes = MatrizRes||~x0;
@@ -100,26 +104,26 @@ LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> Matriz
        ~this->X0;
    }
    //Insere o chute inicial na Matriz resposta
-   for(int i = 1; i < MatrizRes.getNumberOfColumns(); i++){
+   for(unsigned i = 1; i < MatrizRes.getNumberOfColumns(); i++){
        MatrizRes(1,i) = this->X0(1,i);
    }
 
    //Laço para contar as linhas da Matriz Resposta
-   for(int k = 2; k <= MaxIterations; k++)
+   for(unsigned k = 2; k <= MaxIterations; k++)
    {
        //Laço para contar as colunas da MatrizRes e linhas da MatrizUni.
-       for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
+       for(unsigned i = 1; i < MatrizUni.getNumberOfColumns(); i++)
        {
            float aux = 0;
 
            //Verificação das variáveis atualizadas (mesma linha)
-           for(int j = 1; j < i; j++)
+           for(unsigned j = 1; j < i; j++)
            {
                aux += (MatrizUni(i,j)*MatrizRes(k, j));
            }
 
            //Verificação das variaveis não atualizadas (linha anterior)
-           for(int j = i+1; j < MatrizUni.getNumberOfColumns(); j++)
+           for(unsigned j = i+1; j < MatrizUni.getNumberOfColumns(); j++)
            {
                aux += (MatrizUni(i,j)*MatrizRes(k-1, j));
            }
@@ -142,9 +146,9 @@ LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> Matriz
 void SistemasLineares::CritLinhas(LinAlg::Matrix<float> MatrizUni)
 {
     LinAlg::Matrix<float> MatrizRes(1,MatrizUni.getNumberOfRows());
-    for(int i = 0; i <= MatrizUni.getNumberOfRows(); i++)
+    for(unsigned i = 0; i <= MatrizUni.getNumberOfRows(); i++)
     {
-        for(int j = 0; j <= MatrizUni.getNumberOfColumns(); j++)
+        for(unsigned j = 0; j <= MatrizUni.getNumberOfColumns(); j++)
         {
             if(i != j)
             {
