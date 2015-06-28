@@ -1,18 +1,10 @@
 #include "interpolacaopolinomial.h"
 
-InterpolacaoPolinomial::InterpolacaoPolinomial(LinAlg::Matrix<float> n)
-{
-    this->n = n;
-}
-InterpolacaoPolinomial::InterpolacaoPolinomial(LinAlg::Matrix<float> n, LinAlg::Matrix<float> f)
-{
-    this->n = n;
-    this->f = f;
-}
 InterpolacaoPolinomial::InterpolacaoPolinomial()
 {
 }
-LinAlg::Matrix<float> InterpolacaoPolinomial::Init_Vetor_Polynom(unsigned Valor_Ini, unsigned Valor_Fin, unsigned Step)
+
+LinAlg::Matrix<float> InterpolacaoPolinomial::X(unsigned Valor_Ini, unsigned Valor_Fin, unsigned Step)
 {
     unsigned size = ((Valor_Fin-Valor_Ini)/Step)+1;
     LinAlg::Matrix<float> Vetor_Polinomio(1,size);
@@ -36,6 +28,17 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Y(LinAlg::Matrix<float> Polinomio,
             Valores_Y(1, i) += Polinomio(1, j) * pow(Valores_X(1, i), i - 1);
         }
     }
+    return Valores_Y;
+}
+LinAlg::Matrix<float> InterpolacaoPolinomial::Y(LinAlg::Matrix<float> Polinomio, double Valores_X)
+{
+    float Valores_Y;
+
+    for(unsigned i = 1; i <= Polinomio.getNumberOfColumns(); ++i)
+    {
+        Valores_Y += Polinomio(1, i) * pow(Valores_X, i - 1);
+    }
+
     return Valores_Y;
 }
 
@@ -81,6 +84,7 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Lagrange(LinAlg::Matrix<double> Va
     }
     return VetorPolinomio;
 }
+
 LinAlg::Matrix<float> InterpolacaoPolinomial::Newton(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y)
 {
     LinAlg::Matrix<float> VetorPolinomio(1,Valores_Y.getNumberOfColumns());

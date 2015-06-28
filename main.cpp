@@ -4,8 +4,8 @@
 #include "SistemasLineares/sistemaslineares.h"
 #include "FileReader/filereader.h"
 #include "InterpolPolinomial/interpolacaopolinomial.h"
-#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
-#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
 #include <sstream>
 
 using namespace std;
