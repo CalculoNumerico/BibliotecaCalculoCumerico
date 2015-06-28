@@ -1,13 +1,14 @@
 #ifndef INTERPOLACAOPOLINOMIAL_H
 #define INTERPOLACAOPOLINOMIAL_H
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
 #include "SistemasLineares/sistemaslineares.h"
 #include <math.h>
 
 class InterpolacaoPolinomial
 {
     LinAlg::Matrix<float> n, f;
+    LinAlg::Matrix<float> NewtonMatriz;
     unsigned order;
 
 public:
@@ -24,7 +25,10 @@ public:
     //Função para calcular os Polinomios usando os metodos de Vandermonde e Lagrange
     LinAlg::Matrix<float> Vandermonde(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y);
     LinAlg::Matrix<float> Lagrange(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y);
+    LinAlg::Matrix<float> Newton(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y);
 
+
+    LinAlg::Matrix<float> get_NewtonMatriz(){return this->NewtonMatriz;}
 };
 
 #endif // INTERPOLACAOPOLINOMIAL_H

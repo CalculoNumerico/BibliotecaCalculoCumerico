@@ -4,8 +4,8 @@
 #include "SistemasLineares/sistemaslineares.h"
 #include "FileReader/filereader.h"
 #include "InterpolPolinomial/interpolacaopolinomial.h"
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
-#include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
+#include "C:/Users/hbarbosa/Documents/GitHub/CodigosSoftware/SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
 #include <sstream>
 
 using namespace std;
@@ -15,16 +15,16 @@ using namespace std;
 int main()
 {
 ////Exemplo da classe conversao////
-//string A, B;
-//A =  Conv::BinDec("101", "1");
-//cout<<A<<"\n\n";
-////ou.
-//B = Conv::DecBin(1.5, 5);
-//cout<<B<<"\n\n";
-//cout<<Conv::DecBin(254.7,10)<<"\n\n";
-//cout<<Conv::DecBin(0.25,10)<<"\n\n";
-//cout<<Conv::DecBin(0.7,10)<<"\n\n";
-//cout<<Conv::BinDec("101",0)<<"\n\n";
+//   string A, B;
+//   A =  Conv::BinDec("101", "1");
+//   cout<<A<<"\n\n";
+//   //ou.
+//   B = Conv::DecBin(1.5, 5);
+//   cout<<B<<"\n\n";
+//   cout<<Conv::DecBin(254.7,10)<<"\n\n";
+//   cout<<Conv::DecBin(0.25,10)<<"\n\n";
+//   cout<<Conv::DecBin(0.7,10)<<"\n\n";
+//  cout<<Conv::BinDec("101",0)<<"\n\n";
 ////-----------------------------------////
 ////Exemplo da classe ponto flutuante/////
 //PontFlutuante a;
@@ -66,8 +66,11 @@ int main()
 //LinAlg::Matrix<float> B;
 //A = "0.5,0.6,0.7";
 //B = "0.4794; 0.5646; 0.6442";
+//cout<<endl<<"Vandermonde"<<endl;
+//cout<<endl<<A<<endl<<~B<<endl;
 //cout<<endl<<(G.MatrizVandermonde(A)|B)<<endl;
-//cout<<endl<<G.Polinomio_Vandermonde(A,B)<<endl;
+//cout<<endl<<G.Vandermonde(A,B)<<endl;
+//cout<<endl<<"---------------------"<<endl;
 ////---------------------------------------------------------//
 ////Exempo da classe InterpolacaoPolinomial - Lagrange//
 //InterpolacaoPolinomial G1;
@@ -75,8 +78,22 @@ int main()
 //LinAlg::Matrix<float> B1;
 //A1 = "2, 4, 5, 7";
 //B1 = "5, -5, -40, 10";
+//cout<<endl<<"Lagrande"<<endl;
 //cout<<endl<<(A1||B1)<<endl;
-//cout<<endl<<G1.Polinomio_Lagrange(A1,B1)<<endl;
+//cout<<endl<<G1.Lagrange(A1,B1)<<endl;
+//cout<<endl<<"---------------------"<<endl;
+////---------------------------------------------------------//
+////Exempo da classe InterpolacaoPolinomial - Newton//
+//InterpolacaoPolinomial G2;
+//LinAlg::Matrix<double> A2;
+//LinAlg::Matrix<float> B2;
+//A2 = "2, 4, 5, 7";
+//B2 = "5, -5, -40, 10";
+//cout<<endl<<"Newton"<<endl;
+//cout<<endl<<(A2||B2)<<endl;
+//cout<<endl<<G2.Newton(A2,B2)<<endl;
+//cout<<endl<<G2.get_NewtonMatriz()<<endl;
+//cout<<endl<<"---------------------"<<endl;
 ////---------------------------------------------------------//
 ////Exempo da classe InterpolacaoPolinomial - Calcular valores de Y com um polinomio qualquer//
 //InterpolacaoPolinomial G;

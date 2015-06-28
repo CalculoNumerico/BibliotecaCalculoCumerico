@@ -71,6 +71,7 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Lagrange(LinAlg::Matrix<double> Va
 
     VetorPolinomio = LinAlg::Ones<float>(1,Valores_X.getNumberOfColumns());
 
+     ///Efetuando o calculo a(k) = y(k) / (X(k) - X(k + 1) Para (1 < k <= 3).
     for(unsigned i = 1; i <= Valores_X.getNumberOfColumns(); ++i){
         for(unsigned j = 1; j <= Valores_X.getNumberOfColumns(); ++j){
             if(j != i)
@@ -78,5 +79,35 @@ LinAlg::Matrix<float> InterpolacaoPolinomial::Lagrange(LinAlg::Matrix<double> Va
         }
         VetorPolinomio(1, i) = Valores_Y(1, i) / VetorPolinomio(1, i);
     }
+    return VetorPolinomio;
+}
+LinAlg::Matrix<float> InterpolacaoPolinomial::Newton(LinAlg::Matrix<double> Valores_X, LinAlg::Matrix<float> Valores_Y)
+{
+    LinAlg::Matrix<float> VetorPolinomio(1,Valores_Y.getNumberOfColumns());
+    LinAlg::Matrix<float> MatrizNewton(Valores_Y.getNumberOfColumns(), Valores_X.getNumberOfColumns());
+
+    ///Parte 1 - Colocar Y na primeira coluna de MatrizNewton
+    //Coloca os Valores de Y na primeira coluna.
+    for(unsigned i = 1; i <= Valores_Y.getNumberOfColumns(); ++i){
+        MatrizNewton(i, 1) = Valores_Y(1, i);
+    }
+    ///-------------------------------------------------------///
+    ///Parte 2 - Subtração dos valores de f()
+    unsigned u = 2;
+    //Pega X(k)
+    for(unsigned j = 1; j < Valores_Y.getNumberOfColumns(); ++j){
+        //Pega X(k+1)
+        for(unsigned k = u; k <= Valores_Y.getNumberOfColumns(); ++k){
+            MatrizNewton(k, j + 1) = MatrizNewton(k,j) - MatrizNewton(k - 1, j);
+        }
+        ++u;
+    }
+    ///-------------------------------------------------------///
+    ///Parte 3 - Pegar a Diagonal para montar o polinomio
+    for(unsigned t = 1; t <= Valores_Y.getNumberOfColumns(); ++t){
+        VetorPolinomio(1,t) = MatrizNewton(t,t);
+    }
+    ///-------------------------------------------------------///
+    this->NewtonMatriz = MatrizNewton;
     return VetorPolinomio;
 }
